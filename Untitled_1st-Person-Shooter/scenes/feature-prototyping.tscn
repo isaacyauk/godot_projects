@@ -1,15 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://1jauc2t3w61k"]
+[gd_scene load_steps=14 format=3 uid="uid://1jauc2t3w61k"]
 
-[ext_resource type="Texture2D" uid="uid://jxshiroeuy7x" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_pewkx"]
-[ext_resource type="Texture2D" uid="uid://dgkv5c2vyd1wg" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_jdybi"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="3_30ed8"]
+[ext_resource type="Texture2D" uid="uid://jxshiroeuy7x" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_ad002"]
+[ext_resource type="Texture2D" uid="uid://dgkv5c2vyd1wg" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_ax3jf"]
+[ext_resource type="Texture2D" uid="uid://chuhjlheaf6y2" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="2_gjekc"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_t11ag"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0ugg"]
-albedo_texture = ExtResource("1_pewkx")
+albedo_texture = ExtResource("1_ad002")
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4632"]
+albedo_texture = ExtResource("2_gjekc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cmd5"]
+albedo_texture = ExtResource("2_gjekc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yr8eh"]
+albedo_texture = ExtResource("2_gjekc")
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vyy1e"]
-panorama = ExtResource("2_jdybi")
+panorama = ExtResource("2_ax3jf")
 
 [sub_resource type="Sky" id="Sky_qn7fb"]
 sky_material = SubResource("PanoramaSkyMaterial_vyy1e")
@@ -30,39 +40,27 @@ height = 1.2
 [node name="stage" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.61781, -0.247559, -0.5, 5.88172)
 use_collision = true
-size = Vector3(20, 1, 20)
+size = Vector3(20.4951, 1, 20)
 material = SubResource("StandardMaterial3D_i0ugg")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 2.06559, 14.956)
+transform = Transform3D(0.272157, 0, 0, 0, 1, 0, 0, 0, 0.299339, 0.172435, 2.06559, 7.48648)
+material_override = SubResource("StandardMaterial3D_g4632")
 use_collision = true
-size = Vector3(20, 1, 20)
-material = SubResource("StandardMaterial3D_i0ugg")
-
-[node name="small_box" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 2.06559, 4.46531)
-use_collision = true
+size = Vector3(20, 1, 17.4568)
 material = SubResource("StandardMaterial3D_i0ugg")
 
 [node name="small_box2" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 1.54329, 3.4455)
-use_collision = true
-material = SubResource("StandardMaterial3D_i0ugg")
-
-[node name="small_box3" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 1.0433, 2.43428)
+material_override = SubResource("StandardMaterial3D_0cmd5")
 use_collision = true
 material = SubResource("StandardMaterial3D_i0ugg")
 
 [node name="small_box4" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 0.541247, 1.47713)
-use_collision = true
-material = SubResource("StandardMaterial3D_i0ugg")
-
-[node name="small_box5" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11137, 0.0392694, 1.47713)
+material_override = SubResource("StandardMaterial3D_yr8eh")
 use_collision = true
 material = SubResource("StandardMaterial3D_i0ugg")
 
@@ -77,7 +75,7 @@ shadow_enabled = true
 
 [node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.33505)
-script = ExtResource("3_30ed8")
+script = ExtResource("3_t11ag")
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
