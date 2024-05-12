@@ -1,0 +1,10 @@
+The following creators' and their video-tutorials were used in the making of this program:
+	- https://www.youtube.com/watch?v=B-PvZgVdU4o&list=PLEHvj4yeNfeF6s-UVs5Zx5TfNYmeCiYwf&index=4&ab_channel=StayAtHomeDev
+	- https://www.youtube.com/watch?v=xIKErMgJ1Yk&t=407s&ab_channel=Lukky
+	- https://www.youtube.com/watch?v=6TsdmFvkw9w&t=579s&ab_channel=StayAtHomeDev
+	- https://www.youtube.com/watch?v=ELiqWceCk0Q&t=240s&ab_channel=CGGeek
+	
+While much of the work in this project is verbatim what was shown in the above videos, there does exist some of my own work here which is derivative of 
+	their instruction.
+
+All credit where credit is due!

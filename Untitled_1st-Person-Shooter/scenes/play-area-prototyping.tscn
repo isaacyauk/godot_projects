@@ -1,6 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://datleu646tgqg"]
+[gd_scene load_steps=27 format=3 uid="uid://datleu646tgqg"]
 
-[ext_resource type="Texture2D" uid="uid://jxshiroeuy7x" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_q3cft"]
+[ext_resource type="Texture2D" uid="uid://dgaal603v6rda" path="res://assets/textures/prototypes/Dark/texture_05.png" id="1_1tgns"]
 [ext_resource type="PackedScene" uid="uid://6v0rcfpv3vvc" path="res://blender-saves/lowpoly-ground-1.blend" id="2_q7ey7"]
 [ext_resource type="PackedScene" uid="uid://dywa5it0vs7xt" path="res://blender-saves/lowpoly-ground.blend" id="3_milue"]
 [ext_resource type="PackedScene" uid="uid://csgyd2i7f7ic1" path="res://blender-saves/lowpoly-ground-pillar.blend" id="4_bu6pl"]
@@ -9,8 +9,29 @@
 [ext_resource type="PackedScene" uid="uid://c8nep03tvbfo3" path="res://blender-saves/lowpoly-ground_pillar-hole.blend" id="7_grx1y"]
 [ext_resource type="PackedScene" uid="uid://u7updkw5lxft" path="res://blender-saves/lowpoly-ground_riverbed.blend" id="8_t3gcd"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np0k8"]
+albedo_texture = ExtResource("1_1tgns")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0hqw"]
+albedo_texture = ExtResource("1_1tgns")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4h1q"]
+albedo_texture = ExtResource("1_1tgns")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ed0m"]
+albedo_texture = ExtResource("1_1tgns")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nc1en"]
+albedo_texture = ExtResource("1_1tgns")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qf5i"]
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xt45"]
+albedo_texture = ExtResource("1_1tgns")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0ugg"]
-albedo_texture = ExtResource("1_q3cft")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tibq5"]
@@ -104,40 +125,42 @@ height = 1.2
 
 [node name="stage" type="Node3D" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="CSGBox3D2" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, -0.626366, -0.795234)
 use_collision = true
 size = Vector3(20, 1, 20)
-material = SubResource("StandardMaterial3D_i0ugg")
+material = SubResource("StandardMaterial3D_np0k8")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="stage"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 2.06559, 14.956)
 use_collision = true
 size = Vector3(20, 1, 20)
-material = SubResource("StandardMaterial3D_i0ugg")
+material = SubResource("StandardMaterial3D_np0k8")
 
 [node name="small_box" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 2.06559, 4.46531)
 use_collision = true
-material = SubResource("StandardMaterial3D_i0ugg")
+material = SubResource("StandardMaterial3D_x0hqw")
 
 [node name="small_box2" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 1.54329, 3.4455)
+material_override = SubResource("StandardMaterial3D_w4h1q")
 use_collision = true
-material = SubResource("StandardMaterial3D_i0ugg")
 
 [node name="small_box3" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 1.0433, 2.43428)
+material_override = SubResource("StandardMaterial3D_4ed0m")
 use_collision = true
-material = SubResource("StandardMaterial3D_i0ugg")
 
 [node name="small_box4" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 0.541247, 1.47713)
+material_override = SubResource("StandardMaterial3D_nc1en")
 use_collision = true
-material = SubResource("StandardMaterial3D_i0ugg")
+material = SubResource("StandardMaterial3D_8qf5i")
 
 [node name="small_box5" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11137, 0.0392694, 1.47713)
+material_override = SubResource("StandardMaterial3D_5xt45")
 use_collision = true
 material = SubResource("StandardMaterial3D_i0ugg")
 
