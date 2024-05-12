@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://datleu646tgqg"]
+[gd_scene load_steps=28 format=3 uid="uid://datleu646tgqg"]
 
 [ext_resource type="Texture2D" uid="uid://dgaal603v6rda" path="res://assets/textures/prototypes/Dark/texture_05.png" id="1_1tgns"]
 [ext_resource type="PackedScene" uid="uid://6v0rcfpv3vvc" path="res://blender-saves/lowpoly-ground-1.blend" id="2_q7ey7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="6_pryhw"]
 [ext_resource type="PackedScene" uid="uid://c8nep03tvbfo3" path="res://blender-saves/lowpoly-ground_pillar-hole.blend" id="7_grx1y"]
 [ext_resource type="PackedScene" uid="uid://u7updkw5lxft" path="res://blender-saves/lowpoly-ground_riverbed.blend" id="8_t3gcd"]
+[ext_resource type="Script" path="res://scenes/reticle.gd" id="9_6r4n8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np0k8"]
 albedo_texture = ExtResource("1_1tgns")
@@ -116,9 +117,9 @@ sky = SubResource("Sky_qn7fb")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_smkxw"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6crv2"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nke1b"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wuyyw"]
 height = 1.2
 
 [node name="world" type="Node3D"]
@@ -183,6 +184,12 @@ shape = SubResource("ConvexPolygonShape3D_8qrw4")
 [node name="lowpoly-ground-pillar" parent="stage" instance=ExtResource("4_bu6pl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75213, 2.56559, 13.9446)
 
+[node name="lowpoly-ground_pillar-hole" parent="stage" instance=ExtResource("7_grx1y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.11112, 2.56559, 18.7066)
+
+[node name="lowpoly-ground_riverbed" parent="stage" instance=ExtResource("8_t3gcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.8753, 0.324841, -5.37488)
+
 [node name="enviroment" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="enviroment"]
@@ -198,12 +205,12 @@ script = ExtResource("6_pryhw")
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_smkxw")
+shape = SubResource("CapsuleShape3D_6crv2")
 disabled = true
 
 [node name="crouching_collision_shape" type="CollisionShape3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6095, 0)
-shape = SubResource("CapsuleShape3D_nke1b")
+shape = SubResource("CapsuleShape3D_wuyyw")
 
 [node name="head" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00227237, 1.8, -0.0150218)
@@ -213,10 +220,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00227237, 1.8, -0.0150218)
 [node name="RayCast3D" type="RayCast3D" parent="player"]
 target_position = Vector3(0, 2, 0)
 
-[node name="lowpoly-ground_pillar-hole" parent="." instance=ExtResource("7_grx1y")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.11112, 2.56559, 18.7066)
+[node name="UserInterface" type="Control" parent="player"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="lowpoly-ground_riverbed" parent="." instance=ExtResource("8_t3gcd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.8753, 0.324841, -5.37488)
+[node name="Reticle" type="CenterContainer" parent="player/UserInterface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_6r4n8")
+
+[node name="Top" type="Line2D" parent="player/UserInterface/Reticle"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="Right" type="Line2D" parent="player/UserInterface/Reticle"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="Bottom" type="Line2D" parent="player/UserInterface/Reticle"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="Left" type="Line2D" parent="player/UserInterface/Reticle"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
 
 [editable path="stage/lowpoly-ground"]
