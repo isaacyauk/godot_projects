@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce8ratieajess"]
+[gd_scene load_steps=7 format=3 uid="uid://ce8ratieajess"]
 
 [ext_resource type="Script" path="res://scripts/interact_ray.gd" id="1_c1t8t"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_kwfed"]
@@ -8,6 +8,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0y85"]
 height = 1.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_k84gw"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_kwfed")
@@ -36,9 +40,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Message
-
-[Key]"
+text = "Message [Key]"
+label_settings = SubResource("LabelSettings_k84gw")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
