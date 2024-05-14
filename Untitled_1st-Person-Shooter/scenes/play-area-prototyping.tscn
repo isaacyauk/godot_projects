@@ -256,4 +256,7 @@ width = 2.0
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
+[node name="RC_CrouchCheck" type="RayCast3D" parent="player"]
+target_position = Vector3(0, 2, 0)
+
 [editable path="stage/lowpoly-ground"]

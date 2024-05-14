@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://etpeptkgfhsb"]
+[gd_scene load_steps=5 format=3 uid="uid://ce8ratieajess"]
 
 [ext_resource type="Script" path="res://scripts/interact_ray.gd" id="1_c1t8t"]
 [ext_resource type="Script" path="res://scripts/reticle.gd" id="2_ldv6j"]
