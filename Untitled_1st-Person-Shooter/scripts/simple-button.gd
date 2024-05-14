@@ -18,4 +18,3 @@ func get_prompt():
 func interact(body):
 	emit_signal("interacted", body)
 	print(body.name, " interacted!!!!!")
-	# something small did this stays??
