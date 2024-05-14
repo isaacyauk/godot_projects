@@ -4,7 +4,9 @@ extends CharacterBody3D
 @onready var head = $head
 @onready var standing_collision_shape = $standing_collision_shape
 @onready var crouching_collision_shape = $crouching_collision_shape
-@onready var ray_cast_3d = $RayCast3D
+#@onready var ray_cast_3d = $RayCast3D
+
+@onready var rc_crouch_check = $RC_CrouchCheck
 
 # --- Speed Variables ---
 # const means that the thing in question will never change, and will not be variable.
@@ -49,7 +51,7 @@ func _physics_process(delta):
 		crouching_collision_shape.disabled = false # Enable/Disable collision shape according to current standing mode.
 
 	# --- Standing Logic ---
-	elif !ray_cast_3d.is_colliding():
+	elif !rc_crouch_check.is_colliding():
 		standing_collision_shape.disabled = false
 		crouching_collision_shape.disabled = true
 		head.position.y = lerp(head.position.y, 1.8, delta * LERP_SPEED)

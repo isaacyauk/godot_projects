@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="6_pryhw"]
 [ext_resource type="PackedScene" uid="uid://c8nep03tvbfo3" path="res://blender-saves/lowpoly-ground_pillar-hole.blend" id="7_grx1y"]
 [ext_resource type="PackedScene" uid="uid://u7updkw5lxft" path="res://blender-saves/lowpoly-ground_riverbed.blend" id="8_t3gcd"]
-[ext_resource type="Script" path="res://scenes/reticle.gd" id="9_6r4n8"]
+[ext_resource type="Script" path="res://scripts/reticle.gd" id="9_6r4n8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np0k8"]
 albedo_texture = ExtResource("1_1tgns")
@@ -178,7 +178,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14306, 0.294013, 1.65781)
 mesh = SubResource("ArrayMesh_nwdo4")
 
 [node name="CollisionShape3D" parent="stage/lowpoly-ground/Cube/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_8qrw4")
 
 [node name="lowpoly-ground-pillar" parent="stage" instance=ExtResource("4_bu6pl")]
