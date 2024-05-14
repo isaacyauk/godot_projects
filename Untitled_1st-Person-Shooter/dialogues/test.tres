@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://b3voh7150rfc5"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_q2vet"]
+
+[resource]
+script = ExtResource("1_q2vet")
+starts = {
+"Test": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-220, -60),
+"start_id": "Test"
+},
+"1_1": {
+"dialogue": "Badabingbadaboom",
+"offset": Vector2(100, -160),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "What?"
+},
+1: {
+"condition": {},
+"link": "END",
+"text": "Uhhhh?"
+},
+2: {
+"condition": {},
+"link": "END",
+"text": "Yes"
+},
+3: {
+"condition": {},
+"link": "END",
+"text": "Yes'nt"
+}
+},
+"size": Vector2(300, 275),
+"speaker": "Bob"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""

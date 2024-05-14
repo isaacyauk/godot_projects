@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7dsj0niu01cv"]
 
-[ext_resource type="Script" path="res://scripts/simple-button.gd" id="1_smesf"]
+[ext_resource type="Script" path="res://scripts/Interactable.gd" id="1_smesf"]
 [ext_resource type="PackedScene" uid="uid://diaw4t5bmjiky" path="res://blender-saves/lowpoly-button.blend" id="1_xrwhw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7svpm"]
