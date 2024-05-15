@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://1jauc2t3w61k"]
+[gd_scene load_steps=18 format=3 uid="uid://1jauc2t3w61k"]
 
 [ext_resource type="Texture2D" uid="uid://hjv6yk7svawy" path="res://assets/textures/prototypes/Red/texture_07.png" id="2_0i7hv"]
 [ext_resource type="Texture2D" uid="uid://dgkv5c2vyd1wg" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_ax3jf"]
 [ext_resource type="Texture2D" uid="uid://vxx2s8rpfxa2" path="res://assets/textures/prototypes/Dark/texture_01.png" id="2_yxk8x"]
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="3_5xg7n"]
+[ext_resource type="PackedScene" uid="uid://buawpw0o1uaqv" path="res://scenes/rand-scenes-TEST/platform_med.tscn" id="5_jw0bt"]
 [ext_resource type="PackedScene" uid="uid://ce8ratieajess" path="res://scenes/player.tscn" id="6_a87v1"]
 [ext_resource type="PackedScene" uid="uid://c7dsj0niu01cv" path="res://scenes/button.tscn" id="8_2o1ns"]
 
@@ -95,6 +96,10 @@ material = SubResource("StandardMaterial3D_p8rc8")
 
 [node name="Button" parent="stage" instance=ExtResource("8_2o1ns")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -4.45698, 1.04329, 9.50522)
+object_to_instantiate = ExtResource("5_jw0bt")
+
+[node name="ObjSpawn" type="Node3D" parent="stage/Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.94259, 17.7124)
 
 [node name="enviroment" type="Node3D" parent="."]
 
