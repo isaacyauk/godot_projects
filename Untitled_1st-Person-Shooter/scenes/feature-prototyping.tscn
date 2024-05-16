@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://vxx2s8rpfxa2" path="res://assets/textures/prototypes/Dark/texture_01.png" id="2_yxk8x"]
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="3_5xg7n"]
 [ext_resource type="PackedScene" uid="uid://ce8ratieajess" path="res://scenes/player.tscn" id="6_a87v1"]
-[ext_resource type="PackedScene" uid="uid://c7dsj0niu01cv" path="res://scenes/button.tscn" id="8_2o1ns"]
+[ext_resource type="PackedScene" uid="uid://u0k1lliw3ppb" path="res://scenes/newlevel_button.tscn" id="6_oa768"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f35re"]
 albedo_texture = ExtResource("3_5xg7n")
@@ -71,12 +71,6 @@ material_override = SubResource("StandardMaterial3D_v41je")
 use_collision = true
 material = SubResource("StandardMaterial3D_uj5i2")
 
-[node name="small_box3" type="CSGBox3D" parent="stage"]
-transform = Transform3D(0.502436, 0, 0, 0, 1, 0, 0, 0, 0.441625, -4.41029, 0.54329, 9.62808)
-material_override = SubResource("StandardMaterial3D_v41je")
-use_collision = true
-material = SubResource("StandardMaterial3D_uj5i2")
-
 [node name="small_box6" type="CSGBox3D" parent="stage"]
 transform = Transform3D(0.875625, 0, 0.482992, 0, 1, 0, -0.482992, 0, 0.875625, 3.89583, 0.485852, 7.67745)
 use_collision = true
@@ -93,13 +87,6 @@ use_collision = true
 size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_p8rc8")
 
-[node name="Button" parent="stage" instance=ExtResource("8_2o1ns")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -4.45698, 1.04329, 9.50522)
-scene_folder_path = "res://scenes/rand-scenes-TEST/"
-
-[node name="ObjSpawn" type="Node3D" parent="stage/Button"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.94259, 17.7124)
-
 [node name="enviroment" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="enviroment"]
@@ -114,3 +101,7 @@ shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("6_a87v1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.546748, -5)
+
+[node name="new-level-button" parent="." instance=ExtResource("6_oa768")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.28304, 1.02801, 9.14849)
+scene_folder_path = "res://scenes/rand-scenes-TEST/"
