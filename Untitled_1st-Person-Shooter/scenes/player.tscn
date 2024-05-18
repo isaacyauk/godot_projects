@@ -59,7 +59,7 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Reticle" type="CenterContainer" parent="UserInterface"]
+[node name="Reticle" type="CenterContainer" parent="UserInterface" node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,6 +69,8 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_ldv6j")
+RETICLE_LINES = [NodePath("Top"), NodePath("Right"), NodePath("Bottom"), NodePath("Left")]
+PLAYER_CONTROLLER = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
 [node name="Top" type="Line2D" parent="UserInterface/Reticle"]
