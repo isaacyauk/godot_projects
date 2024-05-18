@@ -42,7 +42,7 @@ func _input(event):
 
 func _physics_process(delta):
 # ------- Handling Movements -------
-	
+	Global.debug.add_property("MovementSpeed", CURRENT_SPEED, 1) # This is adding this value to the debug pannel using the custom methods in the debug class
 	# --- Crouching Logic ---
 	if Input.is_action_pressed("crouch"):
 		CURRENT_SPEED = CROUCH_SPEED
