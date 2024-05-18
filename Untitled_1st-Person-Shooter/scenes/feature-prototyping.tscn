@@ -49,7 +49,7 @@ sky = SubResource("Sky_qn7fb")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="world" type="Node3D"]
+[node name="world2" type="Node3D"]
 
 [node name="stage" type="Node3D" parent="."]
 
