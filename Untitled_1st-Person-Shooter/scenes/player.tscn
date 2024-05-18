@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce8ratieajess"]
+[gd_scene load_steps=8 format=3 uid="uid://ce8ratieajess"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_kwfed"]
 [ext_resource type="Script" path="res://scripts/reticle.gd" id="2_ldv6j"]
 [ext_resource type="Script" path="res://scripts/interact_ray.gd" id="2_mxxcs"]
+[ext_resource type="PackedScene" uid="uid://q4yxjqaop64g" path="res://blender-saves/heavy-repeater.blend" id="2_xdicr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_junof"]
 
@@ -29,6 +30,11 @@ shape = SubResource("CapsuleShape3D_p0y85")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00227237, 1.8, -0.0150218)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
+
+[node name="Weapon Rig" type="Node3D" parent="head/Camera3D"]
+
+[node name="heavy-repeater" parent="head/Camera3D/Weapon Rig" instance=ExtResource("2_xdicr")]
+transform = Transform3D(-0.0997734, 0, -0.0067284, 0, 0.1, 0, 0.0067284, 0, -0.0997734, 0.458881, -0.409829, -0.487054)
 
 [node name="RC_Interact" type="RayCast3D" parent="head"]
 target_position = Vector3(0, 0, -4)
