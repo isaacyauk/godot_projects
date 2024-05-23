@@ -40,12 +40,12 @@ uv1_triplanar = true
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vyy1e"]
 panorama = ExtResource("2_ax3jf")
 
-[sub_resource type="Sky" id="Sky_qn7fb"]
+[sub_resource type="Sky" id="Sky_3e2j0"]
 sky_material = SubResource("PanoramaSkyMaterial_vyy1e")
 
 [sub_resource type="Environment" id="Environment_vbgb5"]
 background_mode = 2
-sky = SubResource("Sky_qn7fb")
+sky = SubResource("Sky_3e2j0")
 tonemap_mode = 2
 glow_enabled = true
 

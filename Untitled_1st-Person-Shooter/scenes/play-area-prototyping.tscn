@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://csgyd2i7f7ic1" path="res://blender-saves/lowpoly-ground-pillar.blend" id="4_bu6pl"]
 [ext_resource type="Texture2D" uid="uid://dgkv5c2vyd1wg" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="5_u27ea"]
 [ext_resource type="PackedScene" uid="uid://c8nep03tvbfo3" path="res://blender-saves/lowpoly-ground_pillar-hole.blend" id="7_grx1y"]
-[ext_resource type="PackedScene" uid="uid://ce8ratieajess" path="res://scenes/player.tscn" id="8_csost"]
+[ext_resource type="PackedScene" uid="uid://c3jk6ubpf5sha" path="res://scenes/player_UPDATED.tscn" id="8_fmbiw"]
 [ext_resource type="PackedScene" uid="uid://u7updkw5lxft" path="res://blender-saves/lowpoly-ground_riverbed.blend" id="8_t3gcd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np0k8"]
@@ -192,7 +192,7 @@ environment = SubResource("Environment_vbgb5")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("8_csost")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+[node name="player" parent="." instance=ExtResource("8_fmbiw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94293, -0.126366, -7.53988)
 
 [editable path="stage/lowpoly-ground"]

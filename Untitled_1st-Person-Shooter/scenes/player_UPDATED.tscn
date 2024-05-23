@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3jk6ubpf5sha"]
+
+[ext_resource type="Script" path="res://scripts/player-UPDATE.gd" id="1_g7qiy"]
+[ext_resource type="PackedScene" uid="uid://q4yxjqaop64g" path="res://blender-saves/heavy-repeater.blend" id="2_oh2r0"]
+[ext_resource type="Script" path="res://scripts/interact_ray.gd" id="3_okte4"]
+[ext_resource type="Script" path="res://scripts/reticle.gd" id="4_1k8mx"]
+[ext_resource type="Theme" uid="uid://cnhwnw5k35xdg" path="res://ui-and-themes/debug.tres" id="5_p0hi4"]
+[ext_resource type="Script" path="res://scripts/debug.gd" id="6_dn2y2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_junof"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0y85"]
+height = 1.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_k84gw"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_g7qiy")
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_junof")
+disabled = true
+
+[node name="crouching_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6095, 0)
+shape = SubResource("CapsuleShape3D_p0y85")
+
+[node name="CameraController" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00227237, 1.8, -0.0150218)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+
+[node name="Weapon Rig" type="Node3D" parent="CameraController/Camera3D"]
+
+[node name="heavy-repeater" parent="CameraController/Camera3D/Weapon Rig" instance=ExtResource("2_oh2r0")]
+transform = Transform3D(-0.0997734, 0, -0.0067284, 0, 0.1, 0, 0.0067284, 0, -0.0997734, 0.458881, -0.409829, -0.487054)
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
+visible = false
+update_mode = 1
+
+[node name="RC_Interact" type="RayCast3D" parent="CameraController"]
+target_position = Vector3(0, 0, -4)
+script = ExtResource("3_okte4")
+
+[node name="Prompt" type="Label" parent="CameraController/RC_Interact"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Message [Key]"
+label_settings = SubResource("LabelSettings_k84gw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RC_CrouchCheck" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Reticle" type="CenterContainer" parent="UserInterface" node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_1k8mx")
+RETICLE_LINES = [NodePath("Top"), NodePath("Right"), NodePath("Bottom"), NodePath("Left")]
+PLAYER_CONTROLLER = NodePath("../..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Top" type="Line2D" parent="UserInterface/Reticle"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="Right" type="Line2D" parent="UserInterface/Reticle"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="Bottom" type="Line2D" parent="UserInterface/Reticle"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="Left" type="Line2D" parent="UserInterface/Reticle"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
+
+[node name="DebugPannel" type="PanelContainer" parent="UserInterface"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 50.0
+theme = ExtResource("5_p0hi4")
+script = ExtResource("6_dn2y2")
+
+[node name="MarginContainer" type="MarginContainer" parent="UserInterface/DebugPannel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/DebugPannel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
