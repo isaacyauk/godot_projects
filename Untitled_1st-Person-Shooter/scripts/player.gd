@@ -30,6 +30,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # ------- FUNCTIONS/MAIN -------
 # the ready function is run once, at the beginning of the game run
 func _ready():
+	Global.player = self # When the player controller loads, this refreneces itself to the global var	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # This locks the mouse into the play window
 	
 # The _input function caputures EVERY input event! 

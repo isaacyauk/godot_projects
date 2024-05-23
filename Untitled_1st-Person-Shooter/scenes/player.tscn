@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ce8ratieajess"]
+[gd_scene load_steps=13 format=3 uid="uid://ce8ratieajess"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_kwfed"]
 [ext_resource type="Script" path="res://scripts/reticle.gd" id="2_ldv6j"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://q4yxjqaop64g" path="res://blender-saves/heavy-repeater.blend" id="2_xdicr"]
 [ext_resource type="Theme" uid="uid://cnhwnw5k35xdg" path="res://ui-and-themes/debug.tres" id="5_8oeg1"]
 [ext_resource type="Script" path="res://scripts/debug.gd" id="6_k56e8"]
+[ext_resource type="Script" path="res://scenes/state_machine.gd" id="7_rdalt"]
+[ext_resource type="Script" path="res://scenes/IdlePlayerState.gd" id="8_s8yyg"]
+[ext_resource type="Script" path="res://scenes/WalkingPlayerState.gd" id="9_32f4f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_junof"]
 
@@ -113,3 +116,13 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/DebugPannel/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
+script = ExtResource("7_rdalt")
+CURRENT_STATE = NodePath("IdlePlayerState")
+
+[node name="IdlePlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("8_s8yyg")
+
+[node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("9_32f4f")
