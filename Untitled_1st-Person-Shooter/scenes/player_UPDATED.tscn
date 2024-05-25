@@ -16,8 +16,9 @@ height = 1.2
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
 script = ExtResource("1_g7qiy")
+CAMERA_CONTROLLER = NodePath("CameraController")
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -29,7 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6095, 0)
 shape = SubResource("CapsuleShape3D_p0y85")
 
 [node name="CameraController" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00227237, 1.8, -0.0150218)
+transform = Transform3D(0.405692, 0, 0, 0, 0.202211, 0, 0, 0, 0.395238, 0, 1.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 
