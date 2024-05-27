@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://datleu646tgqg"]
+[gd_scene load_steps=26 format=3 uid="uid://datleu646tgqg"]
 
 [ext_resource type="Texture2D" uid="uid://dgaal603v6rda" path="res://assets/textures/prototypes/Dark/texture_05.png" id="1_1tgns"]
 [ext_resource type="PackedScene" uid="uid://6v0rcfpv3vvc" path="res://blender-saves/lowpoly-ground-1.blend" id="2_q7ey7"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c8nep03tvbfo3" path="res://blender-saves/lowpoly-ground_pillar-hole.blend" id="7_grx1y"]
 [ext_resource type="PackedScene" uid="uid://c3jk6ubpf5sha" path="res://scenes/player_UPDATED.tscn" id="8_fmbiw"]
 [ext_resource type="PackedScene" uid="uid://u7updkw5lxft" path="res://blender-saves/lowpoly-ground_riverbed.blend" id="8_t3gcd"]
+[ext_resource type="PackedScene" uid="uid://u0k1lliw3ppb" path="res://scenes/newlevel_button.tscn" id="9_lj2fw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np0k8"]
 albedo_texture = ExtResource("1_1tgns")
@@ -194,5 +195,9 @@ shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("8_fmbiw")]
 transform = Transform3D(-0.999999, 0, 0.00139633, 0, 1, 0, -0.00139633, 0, -0.999999, -2.94293, -0.126366, -7.53988)
+MOUSE_SENSITIVITY = 0.2
+
+[node name="new-level-button" parent="." instance=ExtResource("9_lj2fw")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.07956, 3.57161, 24.6108)
 
 [editable path="stage/lowpoly-ground"]

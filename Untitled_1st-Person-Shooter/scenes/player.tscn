@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://q4yxjqaop64g" path="res://blender-saves/heavy-repeater.blend" id="2_xdicr"]
 [ext_resource type="Theme" uid="uid://cnhwnw5k35xdg" path="res://ui-and-themes/debug.tres" id="5_8oeg1"]
 [ext_resource type="Script" path="res://scripts/debug.gd" id="6_k56e8"]
-[ext_resource type="Script" path="res://scenes/state_machine.gd" id="7_rdalt"]
-[ext_resource type="Script" path="res://scenes/IdlePlayerState.gd" id="8_s8yyg"]
-[ext_resource type="Script" path="res://scenes/WalkingPlayerState.gd" id="9_32f4f"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="7_rdalt"]
+[ext_resource type="Script" path="res://scripts/IdlePlayerState.gd" id="8_s8yyg"]
+[ext_resource type="Script" path="res://scripts/WalkingPlayerState.gd" id="9_32f4f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_junof"]
 

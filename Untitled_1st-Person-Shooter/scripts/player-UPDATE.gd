@@ -9,12 +9,15 @@ var _rotation_input : float
 var _tilt_input : float
 var _player_rotation : Vector3
 var _camera_rotation : Vector3
+var _is_crouching : bool = false
 
-# These titl vars allow you to clamp the camera looking to straight up and down. @export for quick tweaking.
+# These tilt vars allow you to clamp the camera looking to straight up and down. @export for quick tweaking.
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 @export var CAMERA_CONTROLLER : Node3D
-@export var MOUSE_SENSITIVITY : float = 0.5
+@export var MOUSE_SENSITIVITY : float = 0.25
+@export var ANIMATION_PLAYER : AnimationPlayer
+@export_range(5, 10, 0.1) var CROUCH_SPEED : float = 7.0 	# This makes the animation run 7 times faster 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -22,6 +25,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _input(event):
 	if event.is_action_pressed("quick_exit"):
 		get_tree().quit()
+	if event.is_action_pressed("crouch"):
+		toggle_crouch()
 
 
 func _unhandled_input(event):
@@ -76,3 +81,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func toggle_crouch():
+	if _is_crouching == true:
+		ANIMATION_PLAYER.play("crouch", -1, -CROUCH_SPEED, true)
+	elif _is_crouching == false:
+		ANIMATION_PLAYER.play("crouch", -1, CROUCH_SPEED)
+	
+	_is_crouching = !_is_crouching
+		
