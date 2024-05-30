@@ -1,8 +1,20 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
 
+# The TILT vars allow you to clamp the camera looking to straight up and down. @export for quick tweaking.
+@export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
+@export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
+@export var CAMERA_CONTROLLER : Node3D
+@export var MOUSE_SENSITIVITY : float = 0.25
+@export var ANIMATION_PLAYER : AnimationPlayer
+@export_range(5, 10, 0.1) var CROUCH_SPEED : float = 7.0 	# This makes the animation run 7 times faster 
+@export var CROUCH_SHAPECAST : Node3D
+@export var TOGGLE_CROUCH : bool = true
+@export var SPEED_DEFAULT : float = 5.0
+@export var SPEED_CROUCH : float = 2.0
+@export var JUMP_VELOCITY = 4.5
+
+var _speed : float
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
 var _rotation_input : float
@@ -11,22 +23,23 @@ var _player_rotation : Vector3
 var _camera_rotation : Vector3
 var _is_crouching : bool = false
 
-# These tilt vars allow you to clamp the camera looking to straight up and down. @export for quick tweaking.
-@export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
-@export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
-@export var CAMERA_CONTROLLER : Node3D
-@export var MOUSE_SENSITIVITY : float = 0.25
-@export var ANIMATION_PLAYER : AnimationPlayer
-@export_range(5, 10, 0.1) var CROUCH_SPEED : float = 7.0 	# This makes the animation run 7 times faster 
-
+# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 
 func _input(event):
 	if event.is_action_pressed("quick_exit"):
 		get_tree().quit()
-	if event.is_action_pressed("crouch"):
+	if event.is_action_pressed("crouch") and is_on_floor():
 		toggle_crouch()
+		
+	# Input check conditions if Toggle Crouch option is disabled.
+	if event.is_action_pressed("crouch") and _is_crouching == false and is_on_floor() and TOGGLE_CROUCH == false: # hold to crouch
+		crouching(true)
+	if event.is_action_released("crouch") and TOGGLE_CROUCH == false: # Release to uncrouch
+		if CROUCH_SHAPECAST.is_colliding() == false:
+			crouching(false)
+		elif CROUCH_SHAPECAST.is_colliding() == true:
+			uncrouch_check()
 
 
 func _unhandled_input(event):
@@ -58,35 +71,65 @@ func _update_camera(delta):
 func _ready():
 	Global.player = self # When the player controller loads, this refreneces itself to the global var	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	_speed = SPEED_DEFAULT
 
+	CROUCH_SHAPECAST.add_exception($".")
 
 func _physics_process(delta):
-	Global.debug.add_property("MovementSpeed", SPEED, 1) # This is adding this value to the debug pannel using the custom methods in the debug class
+	Global.debug.add_property("MovementSpeed", _speed, 1) # This is adding this value to the debug pannel using the custom methods in the debug class
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		
 	_update_camera(delta)
 	
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and _is_crouching == false:
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * _speed
+		velocity.z = direction.z * _speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, _speed)
+		velocity.z = move_toward(velocity.z, 0, _speed)
 
 	move_and_slide()
 
 func toggle_crouch():
-	if _is_crouching == true:
-		ANIMATION_PLAYER.play("crouch", -1, -CROUCH_SPEED, true)
+	if _is_crouching == true and CROUCH_SHAPECAST.is_colliding() == false:
+		crouching(false)
 	elif _is_crouching == false:
-		ANIMATION_PLAYER.play("crouch", -1, CROUCH_SPEED)
-	
-	_is_crouching = !_is_crouching
-		
+		crouching(true)
+
+
+func crouching(state : bool):
+	match state:
+		true: 
+			ANIMATION_PLAYER.play("crouch", 0, CROUCH_SPEED)
+			set_movement_speed("crouching")
+		false:
+			ANIMATION_PLAYER.play("crouch", 0, -CROUCH_SPEED, true)
+			set_movement_speed("default")
+
+# A function that checks if the player is colliding with something overhead
+func uncrouch_check():
+	if CROUCH_SHAPECAST.is_colliding() == false:
+		crouching(false)
+	if CROUCH_SHAPECAST.is_colliding() == true:
+		await get_tree().create_timer(0.1).timeout # if crouching is still true, wait 0.1secs and check again.
+		uncrouch_check()
+
+
+func set_movement_speed(state: String):
+	match state:
+		"default":
+			_speed = SPEED_DEFAULT
+		"crouching":
+			_speed = SPEED_CROUCH
+
+func _on_animation_player_animation_started(anim_name):
+	if anim_name == "crouch":
+		_is_crouching = !_is_crouching
