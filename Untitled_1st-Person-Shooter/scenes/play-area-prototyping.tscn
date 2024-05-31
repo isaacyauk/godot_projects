@@ -199,5 +199,6 @@ MOUSE_SENSITIVITY = 0.2
 
 [node name="new-level-button" parent="." instance=ExtResource("9_lj2fw")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.07956, 3.57161, 24.6108)
+scene_folder_path = "res://scenes/rand-scenes-TEST/"
 
 [editable path="stage/lowpoly-ground"]
