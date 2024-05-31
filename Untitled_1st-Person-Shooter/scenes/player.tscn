@@ -21,7 +21,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("collision_shape:position")
+tracks/0/path = NodePath("PlayerCollider:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +45,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("collision_shape:shape:height")
+tracks/2/path = NodePath("PlayerCollider:shape:height")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -60,7 +60,7 @@ resource_name = "crouch"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("collision_shape:position")
+tracks/0/path = NodePath("PlayerCollider:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -84,7 +84,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("collision_shape:shape:height")
+tracks/2/path = NodePath("PlayerCollider:shape:height")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -102,13 +102,13 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_smc2h"]
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATION_PLAYER", "CROUCH_SHAPECAST")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATION_PLAYER", "CROUCH_SHAPECAST")]
 script = ExtResource("1_g7qiy")
 CAMERA_CONTROLLER = NodePath("CameraController")
 ANIMATION_PLAYER = NodePath("AnimationPlayer")
-CROUCH_SHAPECAST = NodePath("ShapeCast3D")
+CROUCH_SHAPECAST = NodePath("CrouchDetection")
 
-[node name="collision_shape" type="CollisionShape3D" parent="."]
+[node name="PlayerCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_junof")
 
@@ -141,6 +141,11 @@ label_settings = SubResource("LabelSettings_k84gw")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7cjj6")
+}
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -209,12 +214,7 @@ script = ExtResource("8_rv2qu")
 [node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_ejiuq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7cjj6")
-}
-
-[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+[node name="CrouchDetection" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("SphereShape3D_smc2h")
 target_position = Vector3(0, 0.5, 0)
