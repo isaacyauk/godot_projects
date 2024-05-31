@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dgkv5c2vyd1wg" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_ax3jf"]
 [ext_resource type="Texture2D" uid="uid://vxx2s8rpfxa2" path="res://assets/textures/prototypes/Dark/texture_01.png" id="2_yxk8x"]
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="3_5xg7n"]
-[ext_resource type="PackedScene" uid="uid://ce8ratieajess" path="res://scenes/player.tscn" id="6_a87v1"]
+[ext_resource type="PackedScene" uid="uid://c3jk6ubpf5sha" path="res://scenes/player.tscn" id="6_6qq6l"]
 [ext_resource type="PackedScene" uid="uid://u0k1lliw3ppb" path="res://scenes/newlevel_button.tscn" id="6_oa768"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f35re"]
@@ -87,6 +87,10 @@ use_collision = true
 size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_p8rc8")
 
+[node name="new-level-button" parent="stage" instance=ExtResource("6_oa768")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.28304, 1.02801, 9.14849)
+scene_folder_path = "res://scenes/rand-scenes-TEST/"
+
 [node name="enviroment" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="enviroment"]
@@ -99,9 +103,5 @@ light_indirect_energy = 0.5
 light_volumetric_fog_energy = 0.5
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("6_a87v1")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.546748, -5)
-
-[node name="new-level-button" parent="." instance=ExtResource("6_oa768")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.28304, 1.02801, 9.14849)
-scene_folder_path = "res://scenes/rand-scenes-TEST/"
+[node name="player" parent="." instance=ExtResource("6_6qq6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02851, 0, -4.66017)

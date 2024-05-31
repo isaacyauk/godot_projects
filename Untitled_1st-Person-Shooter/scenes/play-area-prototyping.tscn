@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://csgyd2i7f7ic1" path="res://blender-saves/lowpoly-ground-pillar.blend" id="4_bu6pl"]
 [ext_resource type="Texture2D" uid="uid://dgkv5c2vyd1wg" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="5_u27ea"]
 [ext_resource type="PackedScene" uid="uid://c8nep03tvbfo3" path="res://blender-saves/lowpoly-ground_pillar-hole.blend" id="7_grx1y"]
-[ext_resource type="PackedScene" uid="uid://c3jk6ubpf5sha" path="res://scenes/player_UPDATED.tscn" id="8_fmbiw"]
+[ext_resource type="PackedScene" uid="uid://c3jk6ubpf5sha" path="res://scenes/player.tscn" id="8_fmbiw"]
 [ext_resource type="PackedScene" uid="uid://u7updkw5lxft" path="res://blender-saves/lowpoly-ground_riverbed.blend" id="8_t3gcd"]
 [ext_resource type="PackedScene" uid="uid://u0k1lliw3ppb" path="res://scenes/newlevel_button.tscn" id="9_lj2fw"]
 
