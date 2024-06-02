@@ -1,88 +1,138 @@
 extends CharacterBody3D
 
-# --- Player Nodes ---
-@onready var head = $head
-@onready var standing_collision_shape = $standing_collision_shape
-@onready var crouching_collision_shape = $crouching_collision_shape
-#@onready var ray_cast_3d = $RayCast3D
 
-@onready var rc_crouch_check = $RC_CrouchCheck
+# The TILT vars allow you to clamp the camera looking to straight up and down. @export for quick tweaking.
+@export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
+@export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
+@export var CAMERA_CONTROLLER : Node3D
+@export var MOUSE_SENSITIVITY : float = 0.25
+@export var ANIMATION_PLAYER : AnimationPlayer
+@export_range(5, 10, 0.1) var CROUCH_SPEED : float = 7.0 	# This makes the animation run 7 times faster 
+@export var CROUCH_SHAPECAST : Node3D
+@export var TOGGLE_CROUCH : bool = true
+@export var SPEED_DEFAULT : float = 5.0
+@export var SPEED_CROUCH : float = 2.0
+@export var JUMP_VELOCITY = 4.5
+@export var ACCELERATION : float = 0.1
+@export var DECELERATION : float = 0.25
 
-# --- Speed Variables ---
-# const means that the thing in question will never change, and will not be variable.
-# @export adds the field into the godot inspector
-var CURRENT_SPEED = 5.0
-const WALKING_SPEED = 5.0
-const SPRINTING_SPEED = 8.0
-const CROUCH_SPEED = 3.0
 
-# --- Movement Variables --- 
-const JUMP_VELOCITY = 4.5
-var LERP_SPEED = 10.0 # This will be used to gradually change the inputs and speed variables
-var CROUCH_DEPTH = -0.5 # this is how much the camera will lower by when "crouch" is pressed.
+var _speed : float
+var _mouse_input : bool = false
+var _mouse_rotation : Vector3
+var _rotation_input : float
+var _tilt_input : float
+var _player_rotation : Vector3
+var _camera_rotation : Vector3
+var _is_crouching : bool = false
 
-# --- Input Variables --- 
-var direction = Vector3.ZERO
-const MOUSE_SENSITIVITY = 0.25
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-# ------- FUNCTIONS/MAIN -------
-# the ready function is run once, at the beginning of the game run
+func _input(event):
+	if event.is_action_pressed("quick_exit"):
+		get_tree().quit()
+	if event.is_action_pressed("crouch") and is_on_floor():
+		toggle_crouch()
+		
+	# Input check conditions if Toggle Crouch option is disabled.
+	if event.is_action_pressed("crouch") and _is_crouching == false and is_on_floor() and TOGGLE_CROUCH == false: # hold to crouch
+		crouching(true)
+	if event.is_action_released("crouch") and TOGGLE_CROUCH == false: # Release to uncrouch
+		if CROUCH_SHAPECAST.is_colliding() == false:
+			crouching(false)
+		elif CROUCH_SHAPECAST.is_colliding() == true:
+			uncrouch_check()
+
+
+func _unhandled_input(event):
+	_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	if _mouse_input:
+		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
+		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
+
+
+func _update_camera(delta):
+	
+	# Rotate camera using euler rotation
+	_mouse_rotation.x += _tilt_input * delta
+	_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
+	_mouse_rotation.y += _rotation_input * delta
+	
+	_player_rotation = Vector3(0.0, _mouse_rotation.y, 0.0)
+	_camera_rotation = Vector3(_mouse_rotation.x, 0.0, 0.0)
+	
+	CAMERA_CONTROLLER.transform.basis = Basis.from_euler(_camera_rotation)
+	CAMERA_CONTROLLER.rotation.z = 0.0 # Avoid twisting camera
+	
+	global_transform.basis = Basis.from_euler(_player_rotation)
+	
+	_rotation_input = 0.0
+	_tilt_input = 0.0
+
+
 func _ready():
 	Global.player = self # When the player controller loads, this refreneces itself to the global var	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # This locks the mouse into the play window
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-# The _input function caputures EVERY input event! 
-func _input(event):
-	# --- Mouse Look Logic ---
-	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENSITIVITY))
-		head.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENSITIVITY))
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-98), deg_to_rad(98)) # Lock the rotation of the player head so that you can't do some paranormal activity crap
+	_speed = SPEED_DEFAULT
+
+	CROUCH_SHAPECAST.add_exception($".")
 
 func _physics_process(delta):
-# ------- Handling Movements -------
-	Global.debug.add_property("MovementSpeed", CURRENT_SPEED, 1) # This is adding this value to the debug pannel using the custom methods in the debug class
-	# --- Crouching Logic ---
-	if Input.is_action_pressed("crouch"):
-		CURRENT_SPEED = CROUCH_SPEED
-		head.position.y = lerp(head.position.y, 1.8 + CROUCH_DEPTH, delta * LERP_SPEED)
-		standing_collision_shape.disabled = true
-		crouching_collision_shape.disabled = false # Enable/Disable collision shape according to current standing mode.
-
-	# --- Standing Logic ---
-	elif !rc_crouch_check.is_colliding():
-		standing_collision_shape.disabled = false
-		crouching_collision_shape.disabled = true
-		head.position.y = lerp(head.position.y, 1.8, delta * LERP_SPEED)
-
-		# --- Sprinting Logic ---
-		if Input.is_action_pressed("sprint"):
-			CURRENT_SPEED = SPRINTING_SPEED
-
-		else:
-			# --- Walking Logic ---
-			CURRENT_SPEED = WALKING_SPEED	
-	
-	# Add the gravity. This checks to see if the player is on the floor, if not, apply gravity.
+	Global.debug.add_property("MovementSpeed", _speed, 1) # This is adding this value to the debug pannel using the custom methods in the debug class
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	# Handle jump. This looks to see if the player is on the floor AND has pressed a jump button
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		
+	_update_camera(delta)
+	
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and _is_crouching == false:
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta*LERP_SPEED)
-	
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
 	if direction:
-		velocity.x = direction.x * CURRENT_SPEED
-		velocity.z = direction.z * CURRENT_SPEED
+		velocity.x = lerp(velocity.x, direction.x * _speed, ACCELERATION)
+		velocity.z = lerp(velocity.z, direction.z * _speed, ACCELERATION)
 	else:
-		velocity.x = move_toward(velocity.x, 0, CURRENT_SPEED)
-		velocity.z = move_toward(velocity.z, 0, CURRENT_SPEED)
+		velocity.x = move_toward(velocity.x, 0, DECELERATION)
+		velocity.z = move_toward(velocity.z, 0, DECELERATION)
 
 	move_and_slide()
+
+func toggle_crouch():
+	if _is_crouching == true and CROUCH_SHAPECAST.is_colliding() == false:
+		crouching(false)
+	elif _is_crouching == false:
+		crouching(true)
+
+
+func crouching(state : bool):
+	match state:
+		true: 
+			ANIMATION_PLAYER.play("crouch", 0, CROUCH_SPEED)
+			set_movement_speed("crouching")
+		false:
+			ANIMATION_PLAYER.play("crouch", 0, -CROUCH_SPEED, true)
+			set_movement_speed("default")
+
+# A function that checks if the player is colliding with something overhead
+func uncrouch_check():
+	if CROUCH_SHAPECAST.is_colliding() == false:
+		crouching(false)
+	if CROUCH_SHAPECAST.is_colliding() == true:
+		await get_tree().create_timer(0.1).timeout # if crouching is still true, wait 0.1secs and check again.
+		uncrouch_check()
+
+
+func set_movement_speed(state: String):
+	match state:
+		"default":
+			_speed = SPEED_DEFAULT
+		"crouching":
+			_speed = SPEED_CROUCH
+
+func _on_animation_player_animation_started(anim_name):
+	if anim_name == "crouch":
+		_is_crouching = !_is_crouching
