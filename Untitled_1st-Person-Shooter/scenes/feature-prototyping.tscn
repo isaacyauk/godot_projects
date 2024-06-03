@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://1jauc2t3w61k"]
+[gd_scene load_steps=19 format=3 uid="uid://1jauc2t3w61k"]
 
 [ext_resource type="Texture2D" uid="uid://hjv6yk7svawy" path="res://assets/textures/prototypes/Red/texture_07.png" id="2_0i7hv"]
 [ext_resource type="Texture2D" uid="uid://dgkv5c2vyd1wg" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_ax3jf"]
 [ext_resource type="Texture2D" uid="uid://vxx2s8rpfxa2" path="res://assets/textures/prototypes/Dark/texture_01.png" id="2_yxk8x"]
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="3_5xg7n"]
+[ext_resource type="Texture2D" uid="uid://dvygybfliphle" path="res://assets/textures/prototypes/Orange/texture_02.png" id="5_w6ves"]
 [ext_resource type="PackedScene" uid="uid://c3jk6ubpf5sha" path="res://scenes/player.tscn" id="6_6qq6l"]
 [ext_resource type="PackedScene" uid="uid://u0k1lliw3ppb" path="res://scenes/newlevel_button.tscn" id="6_oa768"]
 
@@ -36,6 +37,9 @@ uv1_world_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8rc8"]
 albedo_texture = ExtResource("3_5xg7n")
 uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rxbi"]
+albedo_texture = ExtResource("5_w6ves")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vyy1e"]
 panorama = ExtResource("2_ax3jf")
@@ -90,6 +94,61 @@ material = SubResource("StandardMaterial3D_p8rc8")
 [node name="new-level-button" parent="stage" instance=ExtResource("6_oa768")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.28304, 1.02801, 9.14849)
 scene_folder_path = "res://scenes/rand-scenes-TEST/"
+
+[node name="wall2" type="CSGBox3D" parent="stage"]
+transform = Transform3D(0.272157, 0, 0, 0, -4.37114e-08, -0.299339, 0, 1, -1.30845e-08, 12.7569, 2.57489, 3.15468)
+material_override = SubResource("StandardMaterial3D_3rxbi")
+use_collision = true
+size = Vector3(20, 1, 17.4568)
+material = SubResource("StandardMaterial3D_c71cs")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0159, -0.5, 13.0594)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_p8rc8")
+
+[node name="wall3" type="CSGBox3D" parent="stage"]
+transform = Transform3D(0.272157, 0, 0, 0, -4.37114e-08, -0.299339, 0, 1, -1.30845e-08, 16.4444, 2.57489, 7.35945)
+material_override = SubResource("StandardMaterial3D_3rxbi")
+use_collision = true
+size = Vector3(20, 1, 17.4568)
+material = SubResource("StandardMaterial3D_c71cs")
+
+[node name="wall4" type="CSGBox3D" parent="stage"]
+transform = Transform3D(-1.18964e-08, 1, -1.30845e-08, 0, -4.37114e-08, -0.299339, -0.272157, -4.37114e-08, 5.71943e-16, 25.944, 2.57489, 9.7197)
+material_override = SubResource("StandardMaterial3D_3rxbi")
+use_collision = true
+size = Vector3(34.1372, 1, 17.4568)
+material = SubResource("StandardMaterial3D_c71cs")
+
+[node name="wall5" type="CSGBox3D" parent="stage"]
+transform = Transform3D(-1.18964e-08, 1, -1.30845e-08, 0, -4.37114e-08, -0.299339, -0.272157, -4.37114e-08, 5.71943e-16, 21.6594, 2.57489, 15.462)
+material_override = SubResource("StandardMaterial3D_3rxbi")
+use_collision = true
+size = Vector3(34.1372, 1, 17.4568)
+material = SubResource("StandardMaterial3D_c71cs")
+
+[node name="wall6" type="CSGBox3D" parent="stage"]
+transform = Transform3D(-1.18964e-08, 1, -1.30845e-08, 0, -4.37114e-08, -0.299339, -0.272157, -4.37114e-08, 5.71943e-16, 10.7567, 2.57489, 15.1828)
+material_override = SubResource("StandardMaterial3D_3rxbi")
+use_collision = true
+size = Vector3(33.8687, 1, 17.4568)
+material = SubResource("StandardMaterial3D_c71cs")
+
+[node name="wall7" type="CSGBox3D" parent="stage"]
+transform = Transform3D(0.272157, 0, 0, 0, -4.37114e-08, -0.299339, 0, 1, -1.30845e-08, 16.4444, 2.57489, 13.6749)
+material_override = SubResource("StandardMaterial3D_3rxbi")
+use_collision = true
+size = Vector3(20, 1, 17.4568)
+material = SubResource("StandardMaterial3D_c71cs")
+
+[node name="wall8" type="CSGBox3D" parent="stage"]
+transform = Transform3D(-1.18964e-08, 1, -1.30845e-08, 0, -4.37114e-08, -0.299339, -0.272157, -4.37114e-08, 5.71943e-16, 16.5416, 2.57489, 19.6597)
+material_override = SubResource("StandardMaterial3D_3rxbi")
+use_collision = true
+size = Vector3(22.6414, 1, 17.4568)
+material = SubResource("StandardMaterial3D_c71cs")
 
 [node name="enviroment" type="Node3D" parent="."]
 
