@@ -1,6 +1,5 @@
-class_name WalkingPlayerState extends State
+class_name WalkingPlayerState extends PlayerMovementState
 
-@export var ANIMATION : AnimationPlayer
 @export var TOP_ANIM_SPEED: float = 2.2 # I had to change this value from 2.2 to 20 for things to work. Not sure why...
 
 # This function is called when this state is entered.

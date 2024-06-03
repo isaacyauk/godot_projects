@@ -1,7 +1,4 @@
-class_name IdlePlayerState
-extends State
-
-@export var ANIMATION : AnimationPlayer
+class_name IdlePlayerState extends PlayerMovementState
 
 
 # This function is called when this state is entered.

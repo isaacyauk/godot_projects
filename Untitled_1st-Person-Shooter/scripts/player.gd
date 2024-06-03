@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 
 # The TILT vars allow you to clamp the camera looking to straight up and down. @export for quick tweaking.
