@@ -247,10 +247,10 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_smc2h"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATION_PLAYER", "CROUCH_SHAPECAST")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATIONPLAYER", "CROUCH_SHAPECAST")]
 script = ExtResource("1_w4w3g")
 CAMERA_CONTROLLER = NodePath("CameraController")
-ANIMATION_PLAYER = NodePath("AnimationPlayer")
+ANIMATIONPLAYER = NodePath("AnimationPlayer")
 CROUCH_SHAPECAST = NodePath("CrouchDetection")
 
 [node name="PlayerCollider" type="CollisionShape3D" parent="."]
@@ -355,18 +355,12 @@ CURRENT_STATE = NodePath("IdlePlayerState")
 
 [node name="IdlePlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_rv2qu")
-ANIMATION = Object(AnimationPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"libraries":{
-"": SubResource("AnimationLibrary_7cjj6")
-},"autoplay":"","playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":null)
-
 
 [node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_ejiuq")
 
-[node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("ANIMATION")]
+[node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("10_u5yvy")
-ANIMATION = NodePath("../../AnimationPlayer")
-TOP_ANIM_SPEED = null
 
 [node name="CrouchDetection" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
