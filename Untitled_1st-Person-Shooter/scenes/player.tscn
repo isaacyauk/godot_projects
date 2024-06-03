@@ -249,7 +249,7 @@ _data = {
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATIONPLAYER", "CROUCH_SHAPECAST")]
 script = ExtResource("1_w4w3g")
-CAMERA_CONTROLLER = NodePath("CameraController")
+CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
 ANIMATIONPLAYER = NodePath("AnimationPlayer")
 CROUCH_SHAPECAST = NodePath("CrouchDetection")
 

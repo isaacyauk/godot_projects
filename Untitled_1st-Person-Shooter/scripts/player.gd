@@ -15,7 +15,6 @@ var _player_rotation : Vector3
 var _camera_rotation : Vector3
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -25,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
 
 func _input(event):
-	if event.is_action_pressed("exit"):
+	if event.is_action_pressed("quick_exit"):
 		get_tree().quit()
 
 func update_camera(delta) -> void:
