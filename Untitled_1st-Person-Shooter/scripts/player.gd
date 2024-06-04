@@ -28,18 +28,19 @@ func _input(event):
 		get_tree().quit()
 
 func update_camera(delta) -> void:
+	# Rotate camera using euler rotation
 	_mouse_rotation.x += _tilt_input * delta
 	_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
 	_mouse_rotation.y += _rotation_input * delta
 	
-	_player_rotation = Vector3(0.0,_mouse_rotation.y,0.0)
-	_camera_rotation = Vector3(_mouse_rotation.x,0.0,0.0)
-
+	_player_rotation = Vector3(0.0, _mouse_rotation.y, 0.0)
+	_camera_rotation = Vector3(_mouse_rotation.x, 0.0, 0.0)
+	
 	CAMERA_CONTROLLER.transform.basis = Basis.from_euler(_camera_rotation)
+	CAMERA_CONTROLLER.rotation.z = 0.0 # Avoid twisting camera
+	
 	global_transform.basis = Basis.from_euler(_player_rotation)
 	
-	CAMERA_CONTROLLER.rotation.z = 0.0
-
 	_rotation_input = 0.0
 	_tilt_input = 0.0
 	

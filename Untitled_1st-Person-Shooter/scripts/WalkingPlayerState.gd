@@ -17,13 +17,12 @@ func update(delta):
 	set_animation_speed(PLAYER.velocity.length())
 	if PLAYER.velocity.length() == 0.0:
 		transition.emit("IdlePlayerState")
+		
+	if Input.is_action_pressed("sprint") and PLAYER.is_on_floor():
+		transition.emit("SprintingPlayerState")
 
 # This takes in the current speed of the player object and then scales the walking animation bassed on that speed.
 func set_animation_speed(spd):
 	var alpha = remap(spd, 0.0, SPEED, 0.0, 1.0)
 	ANIMATION.speed_scale = lerp(0.0, TOP_ANIM_SPEED, alpha)
 
-
-func _input(event):
-	if event.is_action_pressed("sprint") and PLAYER.is_on_floor():
-		transition.emit("SprintingPlayerState")

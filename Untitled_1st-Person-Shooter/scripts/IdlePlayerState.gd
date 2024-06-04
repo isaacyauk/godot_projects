@@ -15,5 +15,5 @@ func update(delta):
 	PLAYER.update_velocity()
 
 
-	if Global.player.velocity.length() > 0.0 and PLAYER.is_on_floor():
+	if PLAYER.velocity.length() > 0.0 and PLAYER.is_on_floor():
 		transition.emit("WalkingPlayerState")
