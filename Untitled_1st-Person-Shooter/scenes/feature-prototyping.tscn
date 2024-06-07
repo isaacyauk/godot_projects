@@ -163,4 +163,4 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.98198, 1.06683, 9.48
 scene_folder_path = "res://scenes/rand-scenes-TEST/"
 
 [node name="Player" parent="." instance=ExtResource("7_heh0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79676, 0, 4.32895)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65111, 4.76837e-07, 2.34667)

@@ -1,14 +1,150 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3jk6ubpf5sha"]
+[gd_scene load_steps=19 format=3 uid="uid://tn7jgwmmilmk"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_w4w3g"]
 [ext_resource type="PackedScene" uid="uid://q4yxjqaop64g" path="res://blender-saves/heavy-repeater.blend" id="2_oh2r0"]
 [ext_resource type="Script" path="res://scripts/PlayerUI/reticle.gd" id="3_jll14"]
 [ext_resource type="Theme" uid="uid://cnhwnw5k35xdg" path="res://ui-and-themes/debug.tres" id="5_p0hi4"]
-[ext_resource type="Script" path="res://scripts/debug.gd" id="6_dn2y2"]
-[ext_resource type="Script" path="res://scripts/state_machine.gd" id="7_egype"]
-[ext_resource type="Script" path="res://scripts/IdlePlayerState.gd" id="8_rv2qu"]
-[ext_resource type="Script" path="res://scripts/WalkingPlayerState.gd" id="9_ejiuq"]
-[ext_resource type="Script" path="res://scripts/SprintingPlayerState.gd" id="10_ekdlo"]
+
+[sub_resource type="GDScript" id="GDScript_v670p"]
+script/source = "extends CharacterBody3D
+
+
+# The TILT vars allow you to clamp the camera looking to straight up and down. @export for quick tweaking.
+@export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
+@export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
+@export var CAMERA_CONTROLLER : Node3D
+@export var MOUSE_SENSITIVITY : float = 0.25
+@export var ANIMATION_PLAYER : AnimationPlayer
+@export_range(5, 10, 0.1) var CROUCH_SPEED : float = 7.0 	# This makes the animation run 7 times faster 
+@export var CROUCH_SHAPECAST : Node3D
+@export var TOGGLE_CROUCH : bool = true
+@export var SPEED_SPRING : float = 7
+@export var SPEED_DEFAULT : float = 5.0
+@export var SPEED_CROUCH : float = 2.0
+@export var JUMP_VELOCITY = 4.5
+@export var ACCELERATION : float = 0.1
+@export var DECELERATION : float = 0.25
+
+
+var _speed : float
+var _mouse_input : bool = false
+var _mouse_rotation : Vector3
+var _rotation_input : float
+var _tilt_input : float
+var _player_rotation : Vector3
+var _camera_rotation : Vector3
+var _is_crouching : bool = false
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
+
+func _input(event):
+	if event.is_action_pressed(\"quick_exit\"):
+		get_tree().quit()
+	if event.is_action_pressed(\"crouch\") and is_on_floor():
+		toggle_crouch()
+		
+	# Input check conditions if Toggle Crouch option is disabled.
+	if event.is_action_pressed(\"crouch\") and _is_crouching == false and is_on_floor() and TOGGLE_CROUCH == false: # hold to crouch
+		crouching(true)
+	if event.is_action_released(\"crouch\") and TOGGLE_CROUCH == false: # Release to uncrouch
+		if CROUCH_SHAPECAST.is_colliding() == false:
+			crouching(false)
+		elif CROUCH_SHAPECAST.is_colliding() == true:
+			uncrouch_check()
+
+
+func _unhandled_input(event):
+	_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	if _mouse_input:
+		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
+		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
+
+
+func _update_camera(delta):
+	
+	# Rotate camera using euler rotation
+	_mouse_rotation.x += _tilt_input * delta
+	_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
+	_mouse_rotation.y += _rotation_input * delta
+	
+	_player_rotation = Vector3(0.0, _mouse_rotation.y, 0.0)
+	_camera_rotation = Vector3(_mouse_rotation.x, 0.0, 0.0)
+	
+	CAMERA_CONTROLLER.transform.basis = Basis.from_euler(_camera_rotation)
+	CAMERA_CONTROLLER.rotation.z = 0.0 # Avoid twisting camera
+	
+	global_transform.basis = Basis.from_euler(_player_rotation)
+	
+	_rotation_input = 0.0
+	_tilt_input = 0.0
+
+
+func _ready():
+	Global.player = self # When the player controller loads, this refreneces itself to the global var	
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	_speed = SPEED_DEFAULT
+
+	CROUCH_SHAPECAST.add_exception($\".\")
+
+func _physics_process(delta):
+	Global.debug.add_property(\"MovementSpeed\", _speed, 1) # This is adding this value to the debug pannel using the custom methods in the debug class
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+		
+	_update_camera(delta)
+	
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor() and _is_crouching == false:
+		velocity.y = JUMP_VELOCITY
+
+	var input_dir = Input.get_vector(\"left\", \"right\", \"forward\", \"backward\")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+	if direction:
+		velocity.x = lerp(velocity.x, direction.x * _speed, ACCELERATION)
+		velocity.z = lerp(velocity.z, direction.z * _speed, ACCELERATION)
+	else:
+		velocity.x = move_toward(velocity.x, 0, DECELERATION)
+		velocity.z = move_toward(velocity.z, 0, DECELERATION)
+
+	move_and_slide()
+
+func toggle_crouch():
+	if _is_crouching == true and CROUCH_SHAPECAST.is_colliding() == false:
+		crouching(false)
+	elif _is_crouching == false:
+		crouching(true)
+
+
+func crouching(state : bool):
+	match state:
+		true: 
+			ANIMATION_PLAYER.play(\"crouch\", 0, CROUCH_SPEED)
+			set_movement_speed(\"crouching\")
+		false:
+			ANIMATION_PLAYER.play(\"crouch\", 0, -CROUCH_SPEED, true)
+			set_movement_speed(\"default\")
+
+# A function that checks if the player is colliding with something overhead
+func uncrouch_check():
+	if CROUCH_SHAPECAST.is_colliding() == false:
+		crouching(false)
+	if CROUCH_SHAPECAST.is_colliding() == true:
+		await get_tree().create_timer(0.1).timeout # if crouching is still true, wait 0.1secs and check again.
+		uncrouch_check()
+
+
+func set_movement_speed(state: String):
+	match state:
+		\"default\":
+			_speed = SPEED_DEFAULT
+		\"crouching\":
+			_speed = SPEED_CROUCH
+
+func _on_animation_player_animation_started(anim_name):
+	if anim_name == \"crouch\":
+		_is_crouching = !_is_crouching
+"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_junof"]
 
@@ -265,10 +401,170 @@ _data = {
 "walking": SubResource("Animation_gr53x")
 }
 
+[sub_resource type="GDScript" id="GDScript_57wrr"]
+script/source = "extends PanelContainer
+
+@onready var property_container = %VBoxContainer
+
+#var property
+var frames_per_second : String
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	# Set the global reference to self in Global Singleton
+	Global.debug = self
+	# Hide debug pannel on load
+	visible = false
+	#add_debug_property(\"FPS\", frames_per_second)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if visible: 
+		frames_per_second = \".%2f\" % (1.0/delta) # This gets the frames per second every frame
+		add_property(\"FPS\", frames_per_second, 2)
+
+
+func _input(event):
+	# Toggle the debug pannel
+	if event.is_action_pressed(\"debug\"):
+		visible = !visible
+
+
+# Debug function to add and update property
+func add_property(title : String, value, order):
+	var target
+	target = property_container.find_child(title, true, false) # Try to find Label node with same name
+	
+	if !target: # If there is no current Label node for property (i.e. inital load)
+		target = Label.new() # Create new Label node 
+		property_container.add_child(target) # Add new node as child to VBox container
+		target.name = title # set name to title 
+		target.text = target.name + \": \" + str(value) # Set the text value
+	elif visible:
+		target.text = title + \": \" + str(value) # Set the text value
+		property_container.move_child(target, order)
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_4cvdx"]
+script/source = "class_name StateMachine
+extends Node
+
+@export var CURRENT_STATE : State
+var states: Dictionary = {}
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	# This loops through the child nodes and checks if they have a State class type. If they 
+	# 	do, add them to a dictionary for further reference.	
+	for child in get_children():
+		if child is State:
+			states[child.name] = child
+			child.transition.connect(on_child_transition)
+		else:
+			push_warning(\"State machine contains incompatible child node.\")
+	CURRENT_STATE.enter()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	CURRENT_STATE.update(delta)
+	Global.debug.add_property(\"Current State \", CURRENT_STATE.name, 2)
+
+
+func _physics_process(delta):
+	CURRENT_STATE.physics_update(delta)
+	
+
+# This proces controls whenever a state is entered or exited and ensures 
+# 	that only one state can be active at a time.
+func on_child_transition(new_state_name: StringName) -> void:
+	var new_state = states.get(new_state_name)
+	if new_state != null:
+		if new_state != CURRENT_STATE:
+			CURRENT_STATE.exit()
+			new_state.enter()
+			CURRENT_STATE = new_state
+	else:
+		push_warning(\"State does not exist.\")
+"
+
+[sub_resource type="GDScript" id="GDScript_o3eqt"]
+script/source = "class_name IdlePlayerState
+extends State
+
+@export var ANIMATION : AnimationPlayer
+
+
+# This function is called when this state is entered.
+func enter () -> void: 
+	ANIMATION.pause()
+
+
+func update(delta):
+	if Global.player.velocity.length() > 0.0 and Global.player.is_on_floor():
+		transition.emit(\"WalkingPlayerState\")
+"
+
+[sub_resource type="GDScript" id="GDScript_fbjuq"]
+script/source = "class_name WalkingPlayerState extends State
+
+@export var ANIMATION : AnimationPlayer
+@export var TOP_ANIM_SPEED: float = 2.2 # I had to change this value from 2.2 to 20 for things to work. Not sure why...
+
+# This function is called when this state is entered.
+func enter () -> void: 
+	ANIMATION.play(\"walking\", -1.0, 1.0)
+	Global.player._speed = Global.player.SPEED_DEFAULT
+
+func update(delta):
+	set_animation_speed(Global.player.velocity.length())
+	if Global.player.velocity.length() == 0.0:
+		transition.emit(\"IdlePlayerState\")
+
+# This takes in the current speed of the player object and then scales the walking animation bassed on that speed.
+func set_animation_speed(spd):
+	var alpha = remap(spd, 0.0, Global.player.SPEED_DEFAULT, 0.0, 1.0)
+	ANIMATION.speed_scale = lerp(0.0, TOP_ANIM_SPEED, alpha)
+
+
+func _input(event) -> void:
+	if event.is_action_pressed(\"sprint\") and Global.player.is_on_floor():
+		transition.emit(\"SprintingPlayerState\")
+"
+
+[sub_resource type="GDScript" id="GDScript_qi58n"]
+script/source = "class_name SprintingPlayerState extends State
+
+@export var ANIMATION : AnimationPlayer
+@export var TOP_ANIM_SPEED: float = 1.6 # Tweak this as needed
+
+
+func enter() -> void:
+	ANIMATION.play(\"sprinting\", 0.5, 1.0)
+	Global.player._speed = Global.player.SPEED_SPRINTING
+
+
+func update(delta):
+	set_animation_speed(Global.player.velocity.length())
+
+
+# This takes in the current speed of the player object and then scales the walking animation bassed on that speed.
+func set_animation_speed(spd):
+	var alpha = remap(spd, 0.0, Global.player.SPEED_SPRINTING, 0.0, 1.0)
+	ANIMATION.speed_scale = lerp(0.0, TOP_ANIM_SPEED, alpha)
+
+
+func _input(event) -> void:
+	if event.is_action_released(\"sprint\"):
+		transition.emit(\"WalkingPlayerState\")
+"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_smc2h"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATION_PLAYER", "CROUCH_SHAPECAST")]
-script = ExtResource("1_w4w3g")
+script = SubResource("GDScript_v670p")
 CAMERA_CONTROLLER = NodePath("CameraController")
 ANIMATION_PLAYER = NodePath("AnimationPlayer")
 CROUCH_SHAPECAST = NodePath("CrouchDetection")
@@ -359,7 +655,7 @@ offset_top = 10.0
 offset_right = 210.0
 offset_bottom = 50.0
 theme = ExtResource("5_p0hi4")
-script = ExtResource("6_dn2y2")
+script = SubResource("GDScript_57wrr")
 
 [node name="MarginContainer" type="MarginContainer" parent="UserInterface/DebugPannel"]
 layout_mode = 2
@@ -369,19 +665,19 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
-script = ExtResource("7_egype")
+script = SubResource("GDScript_4cvdx")
 CURRENT_STATE = NodePath("IdlePlayerState")
 
 [node name="IdlePlayerState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("ANIMATION")]
-script = ExtResource("8_rv2qu")
+script = SubResource("GDScript_o3eqt")
 ANIMATION = NodePath("../../AnimationPlayer")
 
 [node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("ANIMATION")]
-script = ExtResource("9_ejiuq")
+script = SubResource("GDScript_fbjuq")
 ANIMATION = NodePath("../../AnimationPlayer")
 
 [node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("ANIMATION")]
-script = ExtResource("10_ekdlo")
+script = SubResource("GDScript_qi58n")
 ANIMATION = NodePath("../../AnimationPlayer")
 
 [node name="CrouchDetection" type="ShapeCast3D" parent="."]
