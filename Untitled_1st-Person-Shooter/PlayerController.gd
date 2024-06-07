@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
+var speed
+const WALK_SPEED = 5.0
+const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes; which is typically 9.8
@@ -10,6 +12,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 const BOB_FREQ = 2.0 	# How often bob happens
 const BOB_AMP = 0.08 	# How far up and down the camera will move
 var T_BOB = 0.0 	# Determines how far along the sine function is
+
+# Camera FOV variables
+
+
+#TODO: ADD THESE!
+
 
 @onready var HEAD = $CameraRig
 @onready var CAMERA = $CameraRig/Camera3D
@@ -40,19 +48,30 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
+	# Handle sprint.
+	if Input.is_action_pressed("sprint"):
+		speed = SPRINT_SPEED
+	else:
+		speed = WALK_SPEED
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	# using HEAD.transform here since the HEAD is the game component that is rotating.
 	var direction = (HEAD.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	
+	if is_on_floor():
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
-		
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
+			
 	# ------- Head bob -------
 	# using "float(is_on_floor())" returns 1 or 0 depending on if the character is on the floor, giving a nice check that 0's out headbob if falling
 	T_BOB += delta * velocity.length() * float(is_on_floor()) 
