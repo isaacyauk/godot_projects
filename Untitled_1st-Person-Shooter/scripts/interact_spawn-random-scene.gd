@@ -1,5 +1,5 @@
 class_name Interactable # creating a class here to reference objects elsewhere
-extends Node3D
+extends StaticBody3D
 
 signal interacted(body)
 

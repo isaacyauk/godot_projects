@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7dsj0niu01cv"]
 
-[ext_resource type="Script" path="res://scripts/interact_spawn-random-scene.gd" id="1_hmm8n"]
+[ext_resource type="Script" path="res://scripts/interact_spawn-random-scene.gd" id="1_5w3qn"]
 [ext_resource type="PackedScene" uid="uid://diaw4t5bmjiky" path="res://blender-saves/lowpoly-button.blend" id="1_xrwhw"]
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="3_42eef"]
 
@@ -17,7 +17,7 @@ size = Vector3(1.32446, 0.476807, 1.34509)
 
 [node name="new-level-button" type="StaticBody3D"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.0353945, 0.544334, -0.110559)
-script = ExtResource("1_hmm8n")
+script = ExtResource("1_5w3qn")
 
 [node name="button-stand" type="CSGBox3D" parent="."]
 transform = Transform3D(1.67333, 0, 0, 0, 3.33333, 0, 0, 0, 1.47333, 0.117982, -1.81445, 0.368529)

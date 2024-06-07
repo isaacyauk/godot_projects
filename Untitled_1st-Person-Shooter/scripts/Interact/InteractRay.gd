@@ -8,6 +8,7 @@ func _physics_process(delta):
 	prompt.text = " "
 	if rc_interact.is_colliding():
 		var detected = get_collider() # get the collider of the object that is overlapping with the raycast
+		print(detected) # debugging
 		
 		# if it is of the class "Interactable"
 		if detected is Interactable:
