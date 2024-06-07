@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export_range(5, 10, 0.1) var CROUCH_SPEED : float = 7.0 	# This makes the animation run 7 times faster 
 @export var CROUCH_SHAPECAST : Node3D
 @export var TOGGLE_CROUCH : bool = true
-@export var SPEED_SPRINTING : float = 7
+@export var SPEED_SPRING : float = 7
 @export var SPEED_DEFAULT : float = 5.0
 @export var SPEED_CROUCH : float = 2.0
 @export var JUMP_VELOCITY = 4.5

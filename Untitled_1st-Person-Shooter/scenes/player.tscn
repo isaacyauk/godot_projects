@@ -2,16 +2,36 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_w4w3g"]
 [ext_resource type="PackedScene" uid="uid://q4yxjqaop64g" path="res://blender-saves/heavy-repeater.blend" id="2_oh2r0"]
-[ext_resource type="Script" path="res://scripts/interact_ray.gd" id="3_okte4"]
-[ext_resource type="Script" path="res://scripts/reticle.gd" id="4_1k8mx"]
+[ext_resource type="Script" path="res://scripts/PlayerUI/reticle.gd" id="3_jll14"]
 [ext_resource type="Theme" uid="uid://cnhwnw5k35xdg" path="res://ui-and-themes/debug.tres" id="5_p0hi4"]
 [ext_resource type="Script" path="res://scripts/debug.gd" id="6_dn2y2"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="7_egype"]
 [ext_resource type="Script" path="res://scripts/IdlePlayerState.gd" id="8_rv2qu"]
 [ext_resource type="Script" path="res://scripts/WalkingPlayerState.gd" id="9_ejiuq"]
-[ext_resource type="Script" path="res://scenes/SprintingPlayerState.gd" id="10_u5yvy"]
+[ext_resource type="Script" path="res://scripts/SprintingPlayerState.gd" id="10_ekdlo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_junof"]
+
+[sub_resource type="GDScript" id="GDScript_w6yrh"]
+script/source = "extends RayCast3D
+
+@onready var prompt = $Prompt
+@onready var rc_interact = $\".\"
+
+
+func _physics_process(delta):
+	prompt.text = \" \"
+	if rc_interact.is_colliding():
+		var detected = get_collider() # get the collider of the object that is overlapping with the raycast
+		print(detected) # debugging
+		
+		# if it is of the class \"Interactable\"
+		if detected is Interactable:
+			prompt.text = detected.get_prompt()
+			
+			if Input.is_action_just_pressed(detected.prompt_action):
+				detected.interact(owner)
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_k84gw"]
 outline_size = 2
@@ -268,12 +288,11 @@ transform = Transform3D(0.405692, 0, 0, 0, 0.202211, 0, 0, 0, 0.395238, 0, 1.8, 
 transform = Transform3D(-0.0997734, 0, -0.0067284, 0, 0.1, 0, 0.0067284, 0, -0.0997734, 0.458881, -0.409829, -0.487054)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
-visible = false
 update_mode = 1
 
 [node name="RC_Interact" type="RayCast3D" parent="CameraController"]
 target_position = Vector3(0, 0, -4)
-script = ExtResource("3_okte4")
+script = SubResource("GDScript_w6yrh")
 
 [node name="Prompt" type="Label" parent="CameraController/RC_Interact"]
 anchors_preset = 15
@@ -311,7 +330,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_1k8mx")
+script = ExtResource("3_jll14")
 RETICLE_LINES = [NodePath("Top"), NodePath("Right"), NodePath("Bottom"), NodePath("Left")]
 PLAYER_CONTROLLER = NodePath("../..")
 metadata/_edit_use_anchors_ = true
@@ -362,7 +381,7 @@ script = ExtResource("9_ejiuq")
 ANIMATION = NodePath("../../AnimationPlayer")
 
 [node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("ANIMATION")]
-script = ExtResource("10_u5yvy")
+script = ExtResource("10_ekdlo")
 ANIMATION = NodePath("../../AnimationPlayer")
 
 [node name="CrouchDetection" type="ShapeCast3D" parent="."]

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://vxx2s8rpfxa2" path="res://assets/textures/prototypes/Dark/texture_01.png" id="2_yxk8x"]
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="3_5xg7n"]
 [ext_resource type="Texture2D" uid="uid://dvygybfliphle" path="res://assets/textures/prototypes/Orange/texture_02.png" id="5_w6ves"]
-[ext_resource type="PackedScene" uid="uid://u0k1lliw3ppb" path="res://scenes/newlevel_button.tscn" id="6_oa768"]
+[ext_resource type="PackedScene" uid="uid://c7dsj0niu01cv" path="res://scenes/button.tscn" id="7_b3ss1"]
 [ext_resource type="PackedScene" uid="uid://bawy8cx5r77xu" path="res://scenes/player_controller.tscn" id="7_heh0g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f35re"]
@@ -91,10 +91,6 @@ use_collision = true
 size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_p8rc8")
 
-[node name="new-level-button" parent="stage" instance=ExtResource("6_oa768")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.28304, 1.02801, 9.14849)
-scene_folder_path = "res://scenes/rand-scenes-TEST/"
-
 [node name="wall2" type="CSGBox3D" parent="stage"]
 transform = Transform3D(0.272157, 0, 0, 0, -4.37114e-08, -0.299339, 0, 1, -1.30845e-08, 12.7569, 2.57489, 3.15468)
 material_override = SubResource("StandardMaterial3D_3rxbi")
@@ -162,5 +158,9 @@ light_indirect_energy = 0.5
 light_volumetric_fog_energy = 0.5
 shadow_enabled = true
 
-[node name="PlayerController" parent="." instance=ExtResource("7_heh0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04084, 0, -4.87269)
+[node name="new-level-button" parent="." instance=ExtResource("7_b3ss1")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.98198, 1.06683, 9.48997)
+scene_folder_path = "res://scenes/rand-scenes-TEST/"
+
+[node name="Player" parent="." instance=ExtResource("7_heh0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79676, 0, 4.32895)

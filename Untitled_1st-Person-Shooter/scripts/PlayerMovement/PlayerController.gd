@@ -14,9 +14,8 @@ const BOB_AMP = 0.08 	# How far up and down the camera will move
 var T_BOB = 0.0 	# Determines how far along the sine function is
 
 # Camera FOV variables
-
-
-#TODO: ADD THESE!
+const BASE_FOV = 75.0
+const FOV_CHANGE = 1.5
 
 
 @onready var HEAD = $CameraRig
@@ -77,7 +76,13 @@ func _physics_process(delta):
 	T_BOB += delta * velocity.length() * float(is_on_floor()) 
 	# Assing CAMERA to the rseult of the headbobo function
 	CAMERA.transform.origin = headbob(T_BOB)
-
+	
+	# ------- FOV update -------
+	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
+	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
+	CAMERA.fov = lerp(CAMERA.fov, target_fov, delta * 8.0)
+	
+	
 	move_and_slide()
 
 
