@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bnrtvxg5418q1"
+path="res://.godot/imported/lowpoly-button.obj-a1c1c4c48fd4ffe957930603ed0a4a5c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lowpoly-button.obj-a1c1c4c48fd4ffe957930603ed0a4a5c.mesh"]
+
+source_file="res://blender-saves/lowpoly-button.obj"
+dest_files=["res://.godot/imported/lowpoly-button.obj-a1c1c4c48fd4ffe957930603ed0a4a5c.mesh", "res://.godot/imported/lowpoly-button.obj-a1c1c4c48fd4ffe957930603ed0a4a5c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

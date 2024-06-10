@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://u0k1lliw3ppb"]
 
-[ext_resource type="Script" path="res://scripts/interact_spawn-random-scene.gd" id="1_pey3x"]
+[ext_resource type="Script" path="res://Features and Scripts/interact_spawn-random-scene.gd" id="1_pey3x"]
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="2_lpyag"]
 [ext_resource type="PackedScene" uid="uid://diaw4t5bmjiky" path="res://blender-saves/lowpoly-button.blend" id="3_dkwgf"]
 
