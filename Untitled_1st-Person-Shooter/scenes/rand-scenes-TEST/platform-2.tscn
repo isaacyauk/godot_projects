@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://sj1tsrff4ssa"]
+[gd_scene load_steps=7 format=3 uid="uid://sj1tsrff4ssa"]
 
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="1_t3fmn"]
 [ext_resource type="PackedScene" uid="uid://b2fbwl0skk3rr" path="res://scenes/redCube.tscn" id="2_kca0k"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://c7dsj0niu01cv" path="res://Features and Scripts/PlayerInteractions-STATIC/Button.tscn" id="3_a5m4q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m3bn"]
+albedo_texture = ExtResource("1_t3fmn")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkvqk"]
 albedo_texture = ExtResource("1_t3fmn")
 uv1_triplanar = true
 uv1_world_triplanar = true
@@ -24,3 +29,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94096, 1, 9.03368)
 
 [node name="Button" parent="." instance=ExtResource("3_a5m4q")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.94988, 1.5, 9.04689)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.272157, 0, 0, 0, 1, 0, 0, 0, 0.299339, 2.5093, 4.07863, -1.21213)
+use_collision = true
+size = Vector3(20, 1, 17.4568)
+material = SubResource("StandardMaterial3D_fkvqk")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.272157, 0, 0, 0, 1, 0, 0, 0, 0.299339, -7.51163, 2.04441, -0.832472)
+use_collision = true
+size = Vector3(20, 1, 17.4568)
+material = SubResource("StandardMaterial3D_fkvqk")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.252227, -0.375626, 0, 0.102229, 0.926771, 0, 0, 0, 0.143048, -2.51429, 3.10729, -0.653762)
+use_collision = true
+size = Vector3(20, 1, 17.4568)
+material = SubResource("StandardMaterial3D_fkvqk")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-8.06849e-09, 4.32237e-08, -0.143048, 0.102229, 0.926771, 0, 0.252227, -0.375626, -6.25281e-09, -6.5845, 1.05986, -5.71713)
+use_collision = true
+size = Vector3(20, 1, 17.4568)
+material = SubResource("StandardMaterial3D_fkvqk")
