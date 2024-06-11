@@ -15,6 +15,7 @@ offset_top = -24.5
 offset_bottom = 24.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Message
-[KEY]"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Message [KEY]"
 horizontal_alignment = 1

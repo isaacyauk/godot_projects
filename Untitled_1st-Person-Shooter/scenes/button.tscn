@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7dsj0niu01cv"]
+[gd_scene load_steps=5 format=3 uid="uid://c7dsj0niu01cv"]
 
 [ext_resource type="Script" path="res://Features and Scripts/PlayerInteractions-STATIC/Interactable.gd" id="1_ixojm"]
 [ext_resource type="ArrayMesh" uid="uid://bnrtvxg5418q1" path="res://blender-saves/lowpoly-button.obj" id="2_3c0l2"]
+[ext_resource type="PackedScene" uid="uid://vmxudl7rjc5h" path="res://scenes/greenCube.tscn" id="2_vbhca"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_muuf2"]
 size = Vector3(1.22903, 0.576538, 1.40894)
 
 [node name="Button" type="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_ixojm")
+object_to_instantiate = ExtResource("2_vbhca")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0128937, 0.0768433, -0.0184326)
