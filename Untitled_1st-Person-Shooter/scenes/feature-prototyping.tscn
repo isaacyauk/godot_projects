@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="3_5xg7n"]
 [ext_resource type="Texture2D" uid="uid://dvygybfliphle" path="res://assets/textures/prototypes/Orange/texture_02.png" id="5_w6ves"]
 [ext_resource type="PackedScene" uid="uid://bawy8cx5r77xu" path="res://Features and Scripts/PlayerController/player_controller.tscn" id="7_heh0g"]
-[ext_resource type="PackedScene" uid="uid://c7dsj0niu01cv" path="res://scenes/Button.tscn" id="9_h5rfa"]
+[ext_resource type="PackedScene" uid="uid://c7dsj0niu01cv" path="res://Features and Scripts/PlayerInteractions-STATIC/Button.tscn" id="9_h5rfa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ougxj"]
 albedo_texture = ExtResource("3_5xg7n")
@@ -168,4 +168,5 @@ light_volumetric_fog_energy = 0.5
 shadow_enabled = true
 
 [node name="Button" parent="." instance=ExtResource("9_h5rfa")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.05295, 0.966439, 9.52909)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.00728, 0.966439, 9.48013)
+scene_folder_path = "res://scenes/rand-scenes-TEST"

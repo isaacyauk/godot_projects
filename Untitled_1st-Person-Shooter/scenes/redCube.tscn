@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2fbwl0skk3rr"]
+
+[ext_resource type="Texture2D" uid="uid://bo3lu4dgj7sp6" path="res://assets/textures/prototypes/Red/texture_01.png" id="1_2i18n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i1nv5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwi74"]
+albedo_texture = ExtResource("1_2i18n")
+
+[sub_resource type="BoxMesh" id="BoxMesh_viy1v"]
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_i1nv5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_cwi74")
+mesh = SubResource("BoxMesh_viy1v")
