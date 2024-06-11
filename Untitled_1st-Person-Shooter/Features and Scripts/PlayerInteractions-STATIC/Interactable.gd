@@ -14,7 +14,7 @@ var button_pressed = false
 var scene_paths = []
 
 
-func ready():
+func _ready():
 	if scene_folder_path.is_empty():
 		print("Error: Scene folder path is not set")
 	else:
@@ -43,7 +43,6 @@ func get_prompt():
 		if action is InputEventKey:
 			key_name = action.as_text_physical_keycode()
 			break
-	
 	return prompt_message + " [" + key_name + "]\n\n\n"
 
 
@@ -69,8 +68,9 @@ func instantiate_random_object():
 		
 
 func interact(body):
-	print(body.name + " interacted with " + name) 	# Debugging
-	interacted.emit(body)
-	instantiate_random_object()
-	button_pressed = true
+	if !button_pressed:
+		print(body.name + " interacted with " + name) 	# Debugging
+		interacted.emit(body)
+		instantiate_random_object()
+		button_pressed = true
 

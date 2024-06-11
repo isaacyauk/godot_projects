@@ -9,6 +9,7 @@ size = Vector3(1.22903, 0.576538, 1.40894)
 [node name="Button" type="StaticBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_ixojm")
+scene_folder_path = "res://scenes/rand-scenes-TEST/"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0128937, 0.0768433, -0.0184326)
