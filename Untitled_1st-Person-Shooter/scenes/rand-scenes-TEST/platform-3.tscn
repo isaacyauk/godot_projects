@@ -51,7 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.970478, 1, 9.03368)
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.03024, 1.5, 8.99335)
 
 [node name="StaticBody3D11" parent="." instance=ExtResource("4_s4mnx")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.13228, 1.08077, -1.37142)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.13228, 0.980913, -1.37142)
 
 [node name="Button2" parent="." instance=ExtResource("4_jiqq2")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -9.09113, 1.58077, -1.42998)
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -9.09113, 1.48091, -1.42998)

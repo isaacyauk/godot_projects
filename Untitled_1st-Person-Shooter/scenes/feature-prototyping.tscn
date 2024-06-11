@@ -67,7 +67,7 @@ use_collision = true
 material = SubResource("StandardMaterial3D_ougxj")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="stage"]
-transform = Transform3D(0.272157, 0, 0, 0, 1, 0, 0, 0, 0.299339, 0.172435, 2.06559, 7.48648)
+transform = Transform3D(0.272157, 0, 0, 0, 1, 0, 0, 0, 0.299339, 0.172435, 4.68704, 11.5724)
 use_collision = true
 size = Vector3(20, 1, 17.4568)
 material = SubResource("StandardMaterial3D_f35re")
@@ -79,7 +79,7 @@ size = Vector3(20, 1, 17.4568)
 material = SubResource("StandardMaterial3D_c71cs")
 
 [node name="small_box2" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 1.54329, 3.4455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 1.54329, 2.21273)
 material_override = SubResource("StandardMaterial3D_v41je")
 use_collision = true
 material = SubResource("StandardMaterial3D_uj5i2")
@@ -90,7 +90,7 @@ use_collision = true
 material = SubResource("StandardMaterial3D_t77as")
 
 [node name="small_box4" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.174525, 0.547826, 1.47692)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.174525, 0.547826, -0.00386548)
 use_collision = true
 material = SubResource("StandardMaterial3D_ougxj")
 
@@ -154,6 +154,26 @@ material_override = SubResource("StandardMaterial3D_3rxbi")
 use_collision = true
 size = Vector3(22.6414, 1, 17.4568)
 material = SubResource("StandardMaterial3D_c71cs")
+
+[node name="small_box7" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.250597, 5.65834, 13.6033)
+use_collision = true
+material = SubResource("StandardMaterial3D_ougxj")
+
+[node name="Button" parent="stage" instance=ExtResource("9_h5rfa")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.198297, 6.15834, 13.5514)
+
+[node name="small_box3" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 2.54329, 4.4441)
+material_override = SubResource("StandardMaterial3D_v41je")
+use_collision = true
+material = SubResource("StandardMaterial3D_uj5i2")
+
+[node name="small_box8" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172304, 3.75478, 6.69182)
+material_override = SubResource("StandardMaterial3D_v41je")
+use_collision = true
+material = SubResource("StandardMaterial3D_uj5i2")
 
 [node name="enviroment" type="Node3D" parent="."]
 

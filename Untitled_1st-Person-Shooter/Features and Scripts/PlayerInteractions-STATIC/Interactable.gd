@@ -69,7 +69,7 @@ func instantiate_random_object():
 
 func interact(body):
 	if !button_pressed:
-		print(body.name + " interacted with " + name) 	# Debugging
+		#print(body.name + " interacted with " + name) 	# Debugging
 		interacted.emit(body)
 		instantiate_random_object()
 		button_pressed = true
