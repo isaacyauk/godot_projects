@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://duv8rcal87j4h" path="res://assets/textures/prototypes/Dark/texture_07.png" id="3_5xg7n"]
 [ext_resource type="Texture2D" uid="uid://dvygybfliphle" path="res://assets/textures/prototypes/Orange/texture_02.png" id="5_w6ves"]
 [ext_resource type="PackedScene" uid="uid://bawy8cx5r77xu" path="res://Features and Scripts/PlayerController/player_controller.tscn" id="7_heh0g"]
-[ext_resource type="PackedScene" uid="uid://c7dsj0niu01cv" path="res://Features and Scripts/PlayerInteractions-STATIC/Button.tscn" id="9_h5rfa"]
+[ext_resource type="PackedScene" uid="uid://c7dsj0niu01cv" path="res://scenes/Button.tscn" id="9_h5rfa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ougxj"]
 albedo_texture = ExtResource("3_5xg7n")
@@ -56,7 +56,7 @@ glow_enabled = true
 [node name="world2" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("7_heh0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.65111, 4.76837e-07, -0.65333)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65111, 4.76837e-07, 2.34667)
 
 [node name="stage" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565729, -4.76837e-07, -0.00630379)
@@ -67,7 +67,7 @@ use_collision = true
 material = SubResource("StandardMaterial3D_ougxj")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="stage"]
-transform = Transform3D(0.272157, 0, 0, 0, 1, 0, 0, 0, 0.299339, 0.172435, 4.68704, 11.5724)
+transform = Transform3D(0.272157, 0, 0, 0, 1, 0, 0, 0, 0.299339, 0.172435, 2.06559, 7.48648)
 use_collision = true
 size = Vector3(20, 1, 17.4568)
 material = SubResource("StandardMaterial3D_f35re")
@@ -79,7 +79,7 @@ size = Vector3(20, 1, 17.4568)
 material = SubResource("StandardMaterial3D_c71cs")
 
 [node name="small_box2" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 1.54329, 2.21273)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 1.54329, 3.4455)
 material_override = SubResource("StandardMaterial3D_v41je")
 use_collision = true
 material = SubResource("StandardMaterial3D_uj5i2")
@@ -90,7 +90,7 @@ use_collision = true
 material = SubResource("StandardMaterial3D_t77as")
 
 [node name="small_box4" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.174525, 0.547826, -0.00386548)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.174525, 0.547826, 1.47692)
 use_collision = true
 material = SubResource("StandardMaterial3D_ougxj")
 
@@ -155,26 +155,6 @@ use_collision = true
 size = Vector3(22.6414, 1, 17.4568)
 material = SubResource("StandardMaterial3D_c71cs")
 
-[node name="small_box7" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.250597, 5.65834, 13.6033)
-use_collision = true
-material = SubResource("StandardMaterial3D_ougxj")
-
-[node name="Button" parent="stage" instance=ExtResource("9_h5rfa")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.198297, 6.15834, 13.5514)
-
-[node name="small_box3" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172435, 2.54329, 4.4441)
-material_override = SubResource("StandardMaterial3D_v41je")
-use_collision = true
-material = SubResource("StandardMaterial3D_uj5i2")
-
-[node name="small_box8" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172304, 3.75478, 6.69182)
-material_override = SubResource("StandardMaterial3D_v41je")
-use_collision = true
-material = SubResource("StandardMaterial3D_uj5i2")
-
 [node name="enviroment" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="enviroment"]
@@ -188,4 +168,4 @@ light_volumetric_fog_energy = 0.5
 shadow_enabled = true
 
 [node name="Button" parent="." instance=ExtResource("9_h5rfa")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.00728, 0.966439, 9.48013)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.99834, 0.966439, 9.53385)
