@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dghg8reqxe0o5"]
+
+[ext_resource type="Texture2D" uid="uid://d2pajiwb5t5gt" path="res://Placeholder Assets/Player/tile_0097.png" id="1_o8cci"]
+[ext_resource type="Script" uid="uid://nioshfaon6r3" path="res://Scenes/player_battle.gd" id="1_t61rd"]
+[ext_resource type="PackedScene" uid="uid://buwxo5k8p345j" path="res://Scenes/ui/stats_ui.tscn" id="2_t61rd"]
+
+[node name="Player" type="Node2D" unique_id=2001677349 groups=["player_battle"]]
+script = ExtResource("1_t61rd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2012119060]
+texture = ExtResource("1_o8cci")
+
+[node name="StatsUI" parent="." unique_id=677859912 instance=ExtResource("2_t61rd")]
+offset_top = 7.0
+offset_bottom = 23.0

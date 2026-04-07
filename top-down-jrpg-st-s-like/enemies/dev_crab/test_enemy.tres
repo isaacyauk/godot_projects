@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Stats" format=3 uid="uid://n6p3pm0p4f4i"]
+
+[ext_resource type="Texture2D" uid="uid://clsba575cqhft" path="res://Placeholder Assets/Enemies/tile_0110.png" id="1_r4gb3"]
+[ext_resource type="Script" uid="uid://ckyyq2mfisxty" path="res://custom resources/stats.gd" id="1_s74dv"]
+
+[resource]
+script = ExtResource("1_s74dv")
+max_health = 10
+art = ExtResource("1_r4gb3")
+metadata/_custom_type_script = "uid://ckyyq2mfisxty"

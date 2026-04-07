@@ -2,13 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://dqg1khfpm553b" path="res://Placeholder Assets/background.png" id="1_w7k78"]
 [ext_resource type="Script" uid="uid://dmsqkca4hylg" path="res://Scenes/hand_logic/player_hand.gd" id="2_1ruyk"]
-[ext_resource type="Texture2D" uid="uid://clsba575cqhft" path="res://Placeholder Assets/Enemies/tile_0110.png" id="2_f6xt6"]
 [ext_resource type="PackedScene" uid="uid://da6j7shbucats" path="res://Scenes/card_ui/card_ui.tscn" id="2_oxf17"]
+[ext_resource type="PackedScene" uid="uid://3ub12eicf75q" path="res://Scenes/enemy.tscn" id="2_qeyqd"]
+[ext_resource type="Resource" uid="uid://n6p3pm0p4f4i" path="res://enemies/dev_crab/test_enemy.tres" id="3_k7mbx"]
+[ext_resource type="PackedScene" uid="uid://dghg8reqxe0o5" path="res://Scenes/player_battle.tscn" id="3_qeyqd"]
 [ext_resource type="PackedScene" uid="uid://bx0ohba465qlm" path="res://Scenes/card_target_selector/card_target_selector.tscn" id="3_ww2ai"]
+[ext_resource type="Resource" uid="uid://3ojdwlubvwwd" path="res://characters/warrior/test_warrior.tres" id="4_k7mbx"]
 [ext_resource type="Resource" uid="uid://b2ppp8rvufh61" path="res://characters/warrior/cards/dev_warrior_axe_attack.tres" id="4_pd5xk"]
 [ext_resource type="Resource" uid="uid://bvennyd3oxb52" path="res://characters/warrior/cards/dev_warrior_block.tres" id="5_f6xt6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww2ai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxf17"]
 size = Vector2(256, 100)
@@ -22,15 +23,13 @@ texture = ExtResource("1_w7k78")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Enemy" type="Area2D" parent="." unique_id=1292481941]
+[node name="Enemy" parent="." unique_id=1455359904 instance=ExtResource("2_qeyqd")]
 position = Vector2(189, 69)
-collision_layer = 4
+stats = ExtResource("3_k7mbx")
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=1257648524]
-texture = ExtResource("2_f6xt6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=1751733034]
-shape = SubResource("RectangleShape2D_ww2ai")
+[node name="Player" parent="." unique_id=2001677349 instance=ExtResource("3_qeyqd")]
+position = Vector2(35, 79)
+stats = ExtResource("4_k7mbx")
 
 [node name="CardDropArea" type="Area2D" parent="." unique_id=688667727]
 collision_layer = 2
