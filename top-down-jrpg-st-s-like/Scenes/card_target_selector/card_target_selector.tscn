@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bx0ohba465qlm"]
+
+[ext_resource type="PackedScene" uid="uid://6j10nm73d6qg" path="res://Scenes/card_target_selector/card_aimer.tscn" id="1_2d5xl"]
+[ext_resource type="Script" uid="uid://cmyesp7vw3tx6" path="res://Scenes/card_target_selector/card_target_selector.gd" id="1_h16rr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hevy0"]
+size = Vector2(4, 4)
+
+[node name="CardTargetSelector" type="Node2D" unique_id=1191461209]
+script = ExtResource("1_h16rr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=825421610]
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1770394191]
+shape = SubResource("RectangleShape2D_hevy0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=542979335]
+layer = 2
+
+[node name="CardAimer" parent="CanvasLayer" unique_id=1417604636 instance=ExtResource("1_2d5xl")]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

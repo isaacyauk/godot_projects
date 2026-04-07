@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bbv4bb831s3vr"]
+
+[ext_resource type="Script" uid="uid://307k61h0mlfb" path="res://Scripts/movement.gd" id="1_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://d2pajiwb5t5gt" path="res://Placeholder Assets/Player/tile_0097.png" id="1_rpqav"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqav"]
+size = Vector2(12, 14)
+
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=2119210909]
+script = ExtResource("1_kyqiw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=438187741]
+texture_filter = 1
+texture = ExtResource("1_rpqav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1778818766]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_rpqav")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=264955352]
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.8
+drag_top_margin = 0.8
+drag_right_margin = 0.8
+drag_bottom_margin = 0.8

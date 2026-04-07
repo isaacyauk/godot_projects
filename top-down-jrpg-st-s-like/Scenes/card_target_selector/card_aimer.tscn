@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://6j10nm73d6qg"]
+
+[sub_resource type="Curve" id="Curve_vjwsy"]
+_limits = [0.2, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 0.2), 0.0, 0.0, 0, 0, Vector2(0.8815789, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="CardAimer" type="Line2D" unique_id=1417604636]
+width = 4.0
+width_curve = SubResource("Curve_vjwsy")
+metadata/_edit_lock_ = true
