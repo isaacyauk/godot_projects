@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dse1jid4ix1y3"]
+
+[ext_resource type="Script" uid="uid://c7trccvw5e777" path="res://Scripts/entrance_trigger.gd" id="1_lpnwk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyer2"]
+size = Vector2(16, 16)
+
+[node name="EntranceTrigger" type="Area2D" unique_id=1235876950]
+script = ExtResource("1_lpnwk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=663229157]
+shape = SubResource("RectangleShape2D_wyer2")

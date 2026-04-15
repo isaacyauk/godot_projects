@@ -1,4 +1,4 @@
-class_name Enemy
+class_name BattleEnemy # renamed from Enemy to BattleEnemy since it was causing conflicts with global naming
 extends Area2D
 
 const ARROW_OFFSET := 5 

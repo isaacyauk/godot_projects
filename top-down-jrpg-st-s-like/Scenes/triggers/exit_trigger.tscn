@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://yomt2ryed0xx"]
+
+[ext_resource type="Script" uid="uid://08e875jv8rrp" path="res://Scripts/exit_trigger.gd" id="1_dhufc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyer2"]
+size = Vector2(16, 16)
+
+[node name="ExitTrigger" type="Area2D" unique_id=1235876950]
+script = ExtResource("1_dhufc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=663229157]
+shape = SubResource("RectangleShape2D_wyer2")

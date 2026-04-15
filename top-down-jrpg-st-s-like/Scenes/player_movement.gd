@@ -1,16 +1,16 @@
 extends CharacterBody2D
 
-@export var TILE_SIZE = 16
+const TILE_SIZE = 16
 const MOVE_DELAY = 0.15
 
 var move_timer = 0.0
 
 @export var player_sprite: Texture2D
-
+@export var camera_zoom: Vector2 = Vector2(1, 1)
 
 func _ready() -> void:
 	$Sprite2D.texture = player_sprite
-
+	$Camera2D.zoom = camera_zoom
 
 func _physics_process(delta: float) -> void:
 	move_timer -= delta
