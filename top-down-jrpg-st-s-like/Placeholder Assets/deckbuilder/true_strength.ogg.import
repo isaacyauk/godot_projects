@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dbb0ewf2sq3p3"
+path="res://.godot/imported/true_strength.ogg-1d4d82bd00601c0539b15fa1f9931201.oggvorbisstr"
+
+[deps]
+
+source_file="res://Placeholder Assets/deckbuilder/true_strength.ogg"
+dest_files=["res://.godot/imported/true_strength.ogg-1d4d82bd00601c0539b15fa1f9931201.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

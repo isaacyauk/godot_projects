@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bbv4bb831s3vr" path="res://Scenes/player.tscn" id="2_m866c"]
 [ext_resource type="Texture2D" uid="uid://spbl84mhhk2c" path="res://Placeholder Assets/Player/tile_0097_sm.png" id="3_acjnn"]
 [ext_resource type="PackedScene" uid="uid://dse1jid4ix1y3" path="res://Scenes/triggers/entrance_trigger.tscn" id="3_e8lv7"]
+[ext_resource type="PackedScene" uid="uid://cq8p2xj1n0vwe" path="res://Scenes/triggers/encounter_trigger.tscn" id="9_enctr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_newl3"]
 texture = ExtResource("1_newl3")
@@ -260,3 +261,15 @@ position = Vector2(50, 65)
 scale = Vector2(5.7917023, -4.0918694)
 randomize = true
 random_scenes_folder = "res://Scenes/_WorldAreas/Plains/"
+
+[node name="BattleTrigger" parent="." unique_id=768724849 instance=ExtResource("9_enctr")]
+position = Vector2(-55, 71)
+trigger_on_touch = true
+
+[node name="CampfireTrigger" parent="." unique_id=1270882088 instance=ExtResource("9_enctr")]
+position = Vector2(-1, 9)
+encounter_type = 2
+
+[node name="ShopTrigger" parent="." unique_id=2120091073 instance=ExtResource("9_enctr")]
+position = Vector2(31, 9)
+encounter_type = 1

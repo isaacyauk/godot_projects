@@ -1,0 +1,17 @@
+[gd_resource type="Resource" format=3 uid="uid://c8g8a5tx1sr2p"]
+
+[ext_resource type="Texture2D" path="res://Placeholder Assets/deckbuilder/tile_0127.png" id="1_ipoys"]
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_true_strength.gd" id="2_pdjl6"]
+[ext_resource type="AudioStream" path="res://Placeholder Assets/deckbuilder/true_strength.ogg" id="3_2ru8h"]
+
+[resource]
+script = ExtResource("2_pdjl6")
+id = "warrior_true_strength"
+type = 2
+rarity = 2
+target = 0
+cost = 3
+exhausts = false
+icon = ExtResource("1_ipoys")
+tooltip_text = "[center]At the start of your turn, gain 2 [color=\"ffdf00\"]Muscle[/color].[/center]"
+sound = ExtResource("3_2ru8h")

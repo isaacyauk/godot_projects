@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://da6j7shbucats"]
+[gd_scene load_steps=11 format=3 uid="uid://da6j7shbucats"]
 
 [ext_resource type="Theme" uid="uid://cl4cdiri0jiek" path="res://Placeholder Assets/Themes/card_test_theme.tres" id="1_lgc0u"]
 [ext_resource type="Script" uid="uid://by0o2xtbcd44u" path="res://Scenes/card_ui/card_ui.gd" id="2_y8epe"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://mkgh4aihvt0s" path="res://Scenes/card_ui/card_states/card_dragging_state.gd" id="6_p3nnm"]
 [ext_resource type="Script" uid="uid://xa0npqfr0o70" path="res://Scenes/card_ui/card_states/card_released_state.gd" id="7_ld0jv"]
 [ext_resource type="Script" uid="uid://cci8vagb5u4vj" path="res://Scenes/card_ui/card_states/card_aiming_state.gd" id="8_68a2o"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/card_visuals.tscn" id="9_visuals"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgc0u"]
 size = Vector2(25, 30)
@@ -26,6 +27,7 @@ theme = ExtResource("1_lgc0u")
 script = ExtResource("2_y8epe")
 
 [node name="Color" type="ColorRect" parent="." unique_id=1741659709]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,6 +38,7 @@ mouse_filter = 2
 color = Color(0, 0.5012347, 0.06253401, 1)
 
 [node name="CardState" type="Label" parent="." unique_id=123631200]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +48,11 @@ grow_vertical = 2
 text = "state"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CardVisuals" parent="." instance=ExtResource("9_visuals")]
+offset_right = 25.0
+offset_bottom = 30.0
+mouse_filter = 2
 
 [node name="DropPointDetector" type="Area2D" parent="." unique_id=1084498301]
 collision_mask = 2

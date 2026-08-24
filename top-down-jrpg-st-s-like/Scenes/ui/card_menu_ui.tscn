@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://trmdo65td4t7"]
+
+[ext_resource type="Script" path="res://Scenes/ui/card_menu_ui.gd" id="1_0f0jo"]
+[ext_resource type="Resource" path="res://characters/warrior/cards/warrior_block.tres" id="2_1ngm1"]
+[ext_resource type="PackedScene" path="res://Scenes/ui/card_visuals.tscn" id="3_vpo1j"]
+
+[node name="CardMenuUI" type="CenterContainer"]
+offset_right = 25.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+script = ExtResource("1_0f0jo")
+card = ExtResource("2_1ngm1")
+
+[node name="Visuals" parent="." instance=ExtResource("3_vpo1j")]
+layout_mode = 2
+
+[connection signal="gui_input" from="Visuals" to="." method="_on_visuals_gui_input"]
+[connection signal="mouse_entered" from="Visuals" to="." method="_on_visuals_mouse_entered"]
+[connection signal="mouse_exited" from="Visuals" to="." method="_on_visuals_mouse_exited"]

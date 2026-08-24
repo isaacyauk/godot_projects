@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c5hkwpol36dqa"
+path="res://.godot/imported/block.ogg-7df2852eb7ceb21529be36aea4cda52b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Placeholder Assets/deckbuilder/block.ogg"
+dest_files=["res://.godot/imported/block.ogg-7df2852eb7ceb21529be36aea4cda52b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
