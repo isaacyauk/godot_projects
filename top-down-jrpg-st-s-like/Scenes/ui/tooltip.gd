@@ -34,6 +34,13 @@ func hide_tooltip() -> void:
 	if tween:
 		tween.kill()
 
+	# tooltip_hide_requested comes off the Events autoload, so it can reach a
+	# tooltip that is already on its way out -- a card leaving the hand under the
+	# cursor as the battle ends, or the whole scene tearing down. get_tree() is
+	# null there, and the timer would have nothing left to fade anyway.
+	if not is_inside_tree():
+		return
+
 	get_tree().create_timer(fade_seconds, false).timeout.connect(hide_animation)
 
 

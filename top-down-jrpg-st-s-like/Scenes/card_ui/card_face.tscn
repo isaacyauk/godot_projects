@@ -1,0 +1,162 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqk4wv2nx8rta"]
+
+[ext_resource type="Script" path="res://Scenes/card_ui/card_face.gd" id="1_face"]
+[ext_resource type="Resource" path="res://characters/warrior/cards/warrior_slash.tres" id="2_preview"]
+
+[node name="CardFace" type="Control"]
+custom_minimum_size = Vector2(100, 160)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 160.0
+script = ExtResource("1_face")
+card = ExtResource("2_preview")
+
+[node name="FrameColor" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 160.0
+mouse_filter = 2
+color = Color(0.42, 0.2, 0.2, 1)
+
+[node name="FrameTexture" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 160.0
+mouse_filter = 2
+
+[node name="ArtBacking" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 37.0
+offset_right = 94.0
+offset_bottom = 85.0
+mouse_filter = 2
+color = Color(0.11, 0.12, 0.15, 1)
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 37.0
+offset_right = 94.0
+offset_bottom = 85.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BannerColor" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 90.0
+offset_right = 96.0
+offset_bottom = 110.0
+mouse_filter = 2
+color = Color(0.08, 0.09, 0.11, 0.85)
+
+[node name="BannerTexture" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 4.0
+offset_top = 90.0
+offset_right = 96.0
+offset_bottom = 110.0
+mouse_filter = 2
+
+[node name="TypeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 90.0
+offset_right = 96.0
+offset_bottom = 110.0
+mouse_filter = 2
+text = "ATTACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="TextBacking" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 114.0
+offset_right = 96.0
+offset_bottom = 157.0
+mouse_filter = 2
+color = Color(0.13, 0.14, 0.17, 1)
+
+[node name="TextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 116.0
+offset_right = 94.0
+offset_bottom = 156.0
+mouse_filter = 2
+theme_override_constants/line_separation = -2
+bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 3
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 33.0
+mouse_filter = 2
+theme_override_constants/line_spacing = -2
+text = "Slash"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="CostBadgeColor" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 31.0
+offset_bottom = 31.0
+mouse_filter = 2
+color = Color(0.09, 0.1, 0.13, 1)
+
+[node name="CostBadgeTexture" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 31.0
+offset_bottom = 31.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CostLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 31.0
+offset_bottom = 31.0
+mouse_filter = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityPip" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 92.0
+offset_right = 94.0
+offset_bottom = 102.0
+mouse_filter = 2
+color = Color(0.62, 0.64, 0.68, 1)
+
+[node name="RarityPipTexture" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 84.0
+offset_top = 92.0
+offset_right = 94.0
+offset_bottom = 102.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5

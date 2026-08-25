@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="SimpleCard" load_steps=6 format=3 uid="uid://dq7brc2m4vk8s"]
+
+[ext_resource type="Script" path="res://custom resources/simple_card.gd" id="1_simple"]
+[ext_resource type="Script" path="res://custom resources/card_effect_spec.gd" id="2_spec"]
+[ext_resource type="Texture2D" path="res://Placeholder Assets/deckbuilder/tile_0128.png" id="3_icon"]
+[ext_resource type="AudioStream" path="res://Placeholder Assets/deckbuilder/block.ogg" id="4_sfx"]
+
+[sub_resource type="Resource" id="Resource_brace_block"]
+script = ExtResource("2_spec")
+kind = 1
+amount = 4
+upgrade_bonus = 3
+show_in_tooltip = true
+
+[sub_resource type="Resource" id="Resource_brace_draw"]
+script = ExtResource("2_spec")
+kind = 2
+amount = 1
+upgrade_bonus = 0
+show_in_tooltip = true
+
+[resource]
+script = ExtResource("1_simple")
+id = "warrior_brace"
+card_name = "Brace"
+type = 1
+rarity = 0
+target = 0
+cost = 1
+exhausts = false
+can_upgrade = true
+icon = ExtResource("3_icon")
+tooltip_text = "[center]Gain [color=\"5599ff\"]%s[/color] block.
+Draw [color=\"ffdd55\"]%s[/color].[/center]"
+sound = ExtResource("4_sfx")
+effects = Array[ExtResource("2_spec")]([SubResource("Resource_brace_block"), SubResource("Resource_brace_draw")])

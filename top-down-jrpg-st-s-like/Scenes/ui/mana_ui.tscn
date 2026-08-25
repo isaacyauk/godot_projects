@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bnbwu7pkbrwox"]
+[gd_scene load_steps=3 format=3 uid="uid://bnbwu7pkbrwox"]
 
 [ext_resource type="Theme" path="res://main_theme.tres" id="1_g26dn"]
 [ext_resource type="Script" path="res://Scenes/ui/mana_ui.gd" id="2_wmp1w"]
@@ -7,10 +7,10 @@
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -24.0
-offset_right = 24.0
-offset_bottom = -6.0
+offset_left = 15
+offset_top = -60
+offset_right = 60
+offset_bottom = -15
 grow_vertical = 0
 theme = ExtResource("1_g26dn")
 script = ExtResource("2_wmp1w")

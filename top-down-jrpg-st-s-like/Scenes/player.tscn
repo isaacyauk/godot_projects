@@ -8,6 +8,7 @@ size = Vector2(12, 14)
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=2119210909]
 script = ExtResource("1_cvnsp")
+camera_zoom = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=438187741]
 texture_filter = 1

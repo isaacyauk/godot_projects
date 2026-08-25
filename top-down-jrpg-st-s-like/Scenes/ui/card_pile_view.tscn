@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d2jq2r5hb1ajk"]
+[gd_scene load_steps=5 format=3 uid="uid://d2jq2r5hb1ajk"]
 
 [ext_resource type="Script" path="res://Scenes/ui/card_pile_view.gd" id="1_b4itw"]
 [ext_resource type="PackedScene" path="res://Scenes/ui/card_menu_ui.tscn" id="1_yhny2"]
@@ -34,14 +34,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 25
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -63,7 +63,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 8
+theme_override_constants/v_separation = 20
 columns = 6
 
 [node name="CardMenuUI" parent="MarginContainer/VBoxContainer/ScrollContainer/Cards" instance=ExtResource("1_yhny2")]
@@ -144,10 +144,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -50.0
-offset_top = 7.0
-offset_right = -10.0
-offset_bottom = 21.0
+offset_left = -125
+offset_top = 17.5
+offset_right = -25
+offset_bottom = 52.5
 grow_horizontal = 0
 text = "Back"
 

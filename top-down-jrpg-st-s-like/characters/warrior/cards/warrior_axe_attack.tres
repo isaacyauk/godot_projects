@@ -1,4 +1,4 @@
-[gd_resource type="Resource" format=3 uid="uid://btxc1odh1jmst"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://btxc1odh1jmst"]
 
 [ext_resource type="Texture2D" path="res://Placeholder Assets/deckbuilder/tile_0119.png" id="1_mnudp"]
 [ext_resource type="Script" path="res://characters/warrior/cards/warrior_axe_attack.gd" id="2_brwxd"]
@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("2_brwxd")
 id = "warrior_axe_attack"
+card_name = "Axe"
 type = 0
 rarity = 0
 target = 1

@@ -1,7 +1,7 @@
 class_name BattleEnemy # renamed from Enemy to BattleEnemy since it was causing conflicts with global naming
 extends Area2D
 
-const ARROW_OFFSET := 5
+const ARROW_OFFSET := 12
 const WHITE_SPRITE_MATERIAL := preload("res://Placeholder Assets/deckbuilder/white_sprite_material.tres")
 
 # Typed as Stats (not EnemyStats) so the older prototype resources in
@@ -76,7 +76,7 @@ func update_enemy() -> void:
 		await ready
 
 	sprite_2d.texture = stats.art
-	arrow.position = Vector2.RIGHT * (sprite_2d.get_rect().size.x / 2 + ARROW_OFFSET)
+	arrow.position = Vector2.RIGHT * (sprite_2d.get_rect().size.x * sprite_2d.scale.x / 2 + ARROW_OFFSET)
 	setup_ai()
 	update_stats()
 
@@ -109,7 +109,7 @@ func take_damage(damage: int, which_modifier: Modifier.Type) -> void:
 	var modified_damage := modifier_handler.get_modified_value(damage, which_modifier)
 
 	var tween := create_tween()
-	tween.tween_callback(Shaker.shake.bind(self, 16, 0.15))
+	tween.tween_callback(Shaker.shake.bind(self, 40, 0.15))
 	tween.tween_callback(stats.take_damage.bind(modified_damage))
 	tween.tween_interval(0.17)
 

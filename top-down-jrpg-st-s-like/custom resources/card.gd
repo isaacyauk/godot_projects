@@ -1,3 +1,6 @@
+@tool  # card_face.gd previews cards live in the editor; a @tool script can
+       # only call methods on other @tool scripts, otherwise Godot hands it a
+       # placeholder instance and every method call fails.
 class_name Card
 extends Resource
 
@@ -16,7 +19,10 @@ const RARITY_COLORS := {
 const UPGRADE_SUFFIX := "+"
 
 @export_group("Card Attributes")
+## Machine id, used by save data and lookups. Keep it stable.
 @export var id: String
+## What the player reads on the card face. Leave blank to derive it from `id`.
+@export var card_name: String
 @export var type: Type
 @export var rarity: Rarity
 @export var target: Target
@@ -116,6 +122,20 @@ func _apply_upgrade() -> void:
 	pass
 
 
+## The name shown on the card face. Falls back to a prettified id, so a card
+## with no card_name set still reads as "Axe Attack" rather than
+## "warrior_axe_attack".
 func get_display_name() -> String:
-	return id
+	var base := card_name
+
+	if base.is_empty():
+		base = id
+		for prefix in ["warrior_", "wizard_", "assassin_"]:
+			base = base.trim_prefix(prefix)
+		base = base.trim_suffix(UPGRADE_SUFFIX).capitalize()
+
+	if upgraded and not base.ends_with(UPGRADE_SUFFIX):
+		base += UPGRADE_SUFFIX
+
+	return base
 #endregion

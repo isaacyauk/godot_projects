@@ -68,17 +68,17 @@ _data = {
 }
 
 [node name="RelicUI" type="Control"]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_12s3y")
 relic = ExtResource("2_ed5mv")
 
 [node name="Icon" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_right = 40
+offset_bottom = 40
 pivot_offset = Vector2(8, 8)
 texture = ExtResource("1_3654h")
 expand_mode = 1

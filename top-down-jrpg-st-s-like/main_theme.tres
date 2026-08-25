@@ -1,8 +1,8 @@
-[gd_resource type="Theme" format=3 uid="uid://c8cqncsqlplyu"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c8cqncsqlplyu"]
 
-[ext_resource type="StyleBox" uid="uid://b4b3e0d14kvmi" path="res://Scenes/card_ui/card_base_stylebox.tres" id="1_cof14"]
-[ext_resource type="StyleBox" uid="uid://15046auw6h2r" path="res://Scenes/card_ui/card_hover_stylebox.tres" id="1_lro6f"]
-[ext_resource type="FontFile" uid="uid://p7aqv167gdp4" path="res://Placeholder Assets/deckbuilder/pixel_rpg.ttf" id="1_nmkrf"]
+[ext_resource type="StyleBox" path="res://Scenes/card_ui/card_base_stylebox.tres" id="1_cof14"]
+[ext_resource type="StyleBox" path="res://Scenes/card_ui/card_hover_stylebox.tres" id="1_lro6f"]
+[ext_resource type="FontFile" path="res://Placeholder Assets/Fonts/svbold.otf" id="1_nmkrf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8u4k"]
 bg_color = Color(0.631373, 0.34902, 0.321569, 0.501961)
@@ -24,7 +24,7 @@ border_color = Color(0.615686, 0.576471, 0.282353, 1)
 
 [resource]
 default_font = ExtResource("1_nmkrf")
-default_font_size = 6
+default_font_size = 13
 Button/styles/disabled = SubResource("StyleBoxFlat_r8u4k")
 Button/styles/focus = SubResource("StyleBoxEmpty_dmy1r")
 Button/styles/hover = ExtResource("1_lro6f")

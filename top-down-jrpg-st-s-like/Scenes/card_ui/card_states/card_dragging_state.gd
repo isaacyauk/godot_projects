@@ -10,7 +10,7 @@ func enter() -> void:
 	if ui_layer:
 		card_ui.reparent(ui_layer)
 
-	card_ui.card_visuals.panel.set("theme_override_styles/panel", card_ui.DRAG_STYLEBOX)
+	card_ui.card_face.visual_state = CardFace.VisualState.DRAGGING
 	card_ui.set_debug_state(Color.NAVY_BLUE, "DRAGGING")
 	Events.card_drag_started.emit(card_ui)
 

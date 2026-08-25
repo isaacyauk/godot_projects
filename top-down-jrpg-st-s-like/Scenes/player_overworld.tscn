@@ -18,6 +18,7 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_rpqav")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=264955352]
+zoom = Vector2(2, 2)
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true

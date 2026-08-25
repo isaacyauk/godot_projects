@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardPile" format=3 uid="uid://cno2mmhf4bjci"]
+[gd_resource type="Resource" script_class="CardPile" load_steps=11 format=3 uid="uid://cno2mmhf4bjci"]
 
 [ext_resource type="Script" path="res://custom resources/card.gd" id="1_byq7g"]
 [ext_resource type="Script" path="res://custom resources/card_pile.gd" id="1_x06dg"]
@@ -8,7 +8,9 @@
 [ext_resource type="Resource" path="res://characters/warrior/cards/warrior_true_strength.tres" id="4_jteol"]
 [ext_resource type="Resource" path="res://characters/warrior/cards/warrior_sharp_knife.tres" id="5_7s0ni"]
 [ext_resource type="Resource" path="res://characters/warrior/cards/warrior_angry_anvil.tres" id="6_mdr4n"]
+[ext_resource type="Resource" path="res://characters/warrior/cards/warrior_jab.tres" id="7_jab"]
+[ext_resource type="Resource" path="res://characters/warrior/cards/warrior_brace.tres" id="8_brace"]
 
 [resource]
 script = ExtResource("1_x06dg")
-cards = Array[ExtResource("1_byq7g")]([ExtResource("4_jteol"), ExtResource("4_jteol"), ExtResource("3_nwsc5"), ExtResource("3_nwsc5"), ExtResource("3_nwsc5"), ExtResource("3_nwsc5"), ExtResource("2_ur0lo"), ExtResource("2_ur0lo"), ExtResource("2_ur0lo"), ExtResource("2_ur0lo"), ExtResource("4_7uxu8"), ExtResource("4_7uxu8"), ExtResource("4_7uxu8"), ExtResource("5_7s0ni"), ExtResource("5_7s0ni"), ExtResource("5_7s0ni"), ExtResource("6_mdr4n"), ExtResource("6_mdr4n"), ExtResource("6_mdr4n")])
+cards = Array[ExtResource("1_byq7g")]([ExtResource("4_jteol"), ExtResource("4_jteol"), ExtResource("3_nwsc5"), ExtResource("3_nwsc5"), ExtResource("3_nwsc5"), ExtResource("3_nwsc5"), ExtResource("2_ur0lo"), ExtResource("2_ur0lo"), ExtResource("2_ur0lo"), ExtResource("2_ur0lo"), ExtResource("4_7uxu8"), ExtResource("4_7uxu8"), ExtResource("4_7uxu8"), ExtResource("5_7s0ni"), ExtResource("5_7s0ni"), ExtResource("5_7s0ni"), ExtResource("6_mdr4n"), ExtResource("6_mdr4n"), ExtResource("6_mdr4n"), ExtResource("7_jab"), ExtResource("7_jab"), ExtResource("7_jab"), ExtResource("8_brace"), ExtResource("8_brace"), ExtResource("8_brace")])

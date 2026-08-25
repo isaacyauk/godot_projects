@@ -11,17 +11,18 @@
 script = ExtResource("1_t61rd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2012119060]
+scale = Vector2(3, 3)
 texture = ExtResource("1_o8cci")
 
 [node name="StatsUI" parent="." unique_id=677859912 instance=ExtResource("2_t61rd")]
-offset_top = 7.0
-offset_bottom = 23.0
+offset_top = 17.5
+offset_bottom = 57.5
 
 [node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("4_status")]
-offset_left = -24.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = 24.0
+offset_left = -60
+offset_top = 60
+offset_right = -60
+offset_bottom = 60
 status_owner = NodePath("..")
 
 [node name="ModifierHandler" parent="." instance=ExtResource("5_modh")]

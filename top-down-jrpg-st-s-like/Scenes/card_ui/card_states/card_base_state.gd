@@ -15,7 +15,7 @@ func enter() -> void:
 	if card_ui.tween and card_ui.tween.is_running():
 		card_ui.tween.kill()
 
-	card_ui.card_visuals.panel.set("theme_override_styles/panel", card_ui.BASE_STYLEBOX)
+	card_ui.card_face.visual_state = CardFace.VisualState.NORMAL
 	card_ui.reparent_requested.emit(card_ui)
 	card_ui.set_debug_state(Color.WEB_GREEN, "BASE")
 	card_ui.pivot_offset = Vector2.ZERO
@@ -37,7 +37,7 @@ func on_mouse_entered() -> void:
 	if not card_ui.playable or card_ui.disabled:
 		return
 
-	card_ui.card_visuals.panel.set("theme_override_styles/panel", card_ui.HOVER_STYLEBOX)
+	card_ui.card_face.visual_state = CardFace.VisualState.HOVER
 	card_ui.request_tooltip()
 
 
@@ -47,5 +47,5 @@ func on_mouse_exited() -> void:
 	if not card_ui.playable or card_ui.disabled:
 		return
 
-	card_ui.card_visuals.panel.set("theme_override_styles/panel", card_ui.BASE_STYLEBOX)
+	card_ui.card_face.visual_state = CardFace.VisualState.NORMAL
 	Events.tooltip_hide_requested.emit()

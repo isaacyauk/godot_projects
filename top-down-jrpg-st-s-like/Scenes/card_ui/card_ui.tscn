@@ -8,19 +8,19 @@
 [ext_resource type="Script" uid="uid://mkgh4aihvt0s" path="res://Scenes/card_ui/card_states/card_dragging_state.gd" id="6_p3nnm"]
 [ext_resource type="Script" uid="uid://xa0npqfr0o70" path="res://Scenes/card_ui/card_states/card_released_state.gd" id="7_ld0jv"]
 [ext_resource type="Script" uid="uid://cci8vagb5u4vj" path="res://Scenes/card_ui/card_states/card_aiming_state.gd" id="8_68a2o"]
-[ext_resource type="PackedScene" path="res://Scenes/ui/card_visuals.tscn" id="9_visuals"]
+[ext_resource type="PackedScene" path="res://Scenes/card_ui/card_face.tscn" id="9_visuals"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgc0u"]
-size = Vector2(25, 30)
+size = Vector2(100, 160)
 
 [node name="CardUI" type="Control" unique_id=373976721]
-custom_minimum_size = Vector2(25, 30)
+custom_minimum_size = Vector2(100, 160)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -231.0
-offset_bottom = -114.0
+offset_right = -577.5
+offset_bottom = -285
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_lgc0u")
@@ -49,9 +49,9 @@ text = "state"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardVisuals" parent="." instance=ExtResource("9_visuals")]
-offset_right = 25.0
-offset_bottom = 30.0
+[node name="CardFace" parent="." instance=ExtResource("9_visuals")]
+offset_right = 100.0
+offset_bottom = 160.0
 mouse_filter = 2
 
 [node name="DropPointDetector" type="Area2D" parent="." unique_id=1084498301]
@@ -59,7 +59,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector" unique_id=1047290759]
-position = Vector2(12.5, 15)
+position = Vector2(50, 80)
 shape = SubResource("RectangleShape2D_lgc0u")
 
 [node name="CardStateMachine" type="Node" parent="." unique_id=1410435039 node_paths=PackedStringArray("inital_state")]

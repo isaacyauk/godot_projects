@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardStyle" load_steps=3 format=3 uid="uid://c0nvq3xkm8rp2"]
+
+[ext_resource type="Script" path="res://custom resources/card_style.gd" id="1_style"]
+[ext_resource type="FontFile" path="res://Placeholder Assets/Fonts/svbold.otf" id="2_font"]
+
+[resource]
+script = ExtResource("1_style")
+name_font = ExtResource("2_font")
+cost_font = ExtResource("2_font")
+type_font = ExtResource("2_font")
+text_font = ExtResource("2_font")
+name_font_size = 13
+cost_font_size = 26
+type_font_size = 13
+text_font_size = 13
+name_line_spacing = -2
+text_line_spacing = -2
+frame_patch_margin = 4
+color_attack = Color(0.42, 0.2, 0.2, 1)
+color_defend = Color(0.19, 0.28, 0.42, 1)
+color_power = Color(0.32, 0.22, 0.4, 1)
+color_art_backing = Color(0.11, 0.12, 0.15, 1)
+color_banner = Color(0.08, 0.09, 0.11, 0.85)
+color_text_backing = Color(0.13, 0.14, 0.17, 1)
+color_cost_badge = Color(0.09, 0.1, 0.13, 1)
+ink_name = Color(0.96, 0.96, 0.94, 1)
+ink_cost = Color(1, 1, 1, 1)
+ink_type = Color(0.75, 0.78, 0.84, 1)
+ink_text = Color(0.88, 0.9, 0.94, 1)
+rarity_common = Color(0.62, 0.64, 0.68, 1)
+rarity_uncommon = Color(0.39, 0.58, 0.93, 1)
+rarity_rare = Color(0.91, 0.76, 0.28, 1)
+state_normal = Color(1, 1, 1, 1)
+state_hover = Color(1.18, 1.18, 1.18, 1)
+state_dragging = Color(1, 1, 1, 0.9)
+state_unplayable = Color(0.5, 0.5, 0.58, 1)
+state_hover_lift = 8
+label_attack = "ATTACK"
+label_defend = "SKILL"
+label_power = "POWER"

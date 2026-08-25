@@ -1,6 +1,10 @@
 extends CardState
 
-const MOUSE_Y_SNAPBACK_THRESHOLD := 138
+# How far down the screen the cursor has to come back before aiming cancels.
+# This is a "you dragged it back into your hand" line, so it sits near the
+# bottom edge (345 of 360), NOT at the top of the hand -- anything higher
+# cancels aiming during a perfectly normal drag.
+const MOUSE_Y_SNAPBACK_THRESHOLD := 345
 
 
 func enter() -> void:

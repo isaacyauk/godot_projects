@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="SimpleCard" load_steps=5 format=3 uid="uid://b3jab7wxq1nmv"]
+
+[ext_resource type="Script" path="res://custom resources/simple_card.gd" id="1_simple"]
+[ext_resource type="Script" path="res://custom resources/card_effect_spec.gd" id="2_spec"]
+[ext_resource type="Texture2D" path="res://Placeholder Assets/deckbuilder/tile_0125.png" id="3_icon"]
+[ext_resource type="AudioStream" path="res://Placeholder Assets/deckbuilder/slash.ogg" id="4_sfx"]
+
+[sub_resource type="Resource" id="Resource_jab_dmg"]
+script = ExtResource("2_spec")
+kind = 0
+amount = 3
+upgrade_bonus = 2
+show_in_tooltip = true
+
+[resource]
+script = ExtResource("1_simple")
+id = "warrior_jab"
+card_name = "Jab"
+type = 0
+rarity = 0
+target = 1
+cost = 0
+exhausts = false
+can_upgrade = true
+icon = ExtResource("3_icon")
+tooltip_text = "[center]Deal [color=\"ff5555\"]%s[/color] damage.[/center]"
+sound = ExtResource("4_sfx")
+effects = Array[ExtResource("2_spec")]([SubResource("Resource_jab_dmg")])

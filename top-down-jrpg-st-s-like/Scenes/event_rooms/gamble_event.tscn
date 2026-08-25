@@ -30,13 +30,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -50
+offset_top = -50
+offset_right = 50
+offset_bottom = 50
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -47,20 +47,20 @@ vertical_alignment = 1
 
 [node name="FiftyButton" parent="VBoxContainer" instance=ExtResource("2_xqbom")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(110, 20)
+custom_minimum_size = Vector2(275, 50)
 layout_mode = 2
 text = "bet 50g: 50% chance
 to win 100g"
 
 [node name="ThirtyButton" parent="VBoxContainer" instance=ExtResource("2_xqbom")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "bet 50g: 30% chance
 to win 200g"
 
 [node name="SkipButton" parent="VBoxContainer" instance=ExtResource("2_xqbom")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 15)
+custom_minimum_size = Vector2(0, 37.5)
 layout_mode = 2
 text = "Skip the bet"

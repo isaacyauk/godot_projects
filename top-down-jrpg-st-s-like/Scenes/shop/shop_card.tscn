@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" path="res://Placeholder Assets/deckbuilder/gold.png" id="2_s11cf"]
 
 [node name="ShopCard" type="VBoxContainer"]
-custom_minimum_size = Vector2(40, 56)
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 2
+custom_minimum_size = Vector2(100, 140)
+offset_right = 100
+offset_bottom = 100
+theme_override_constants/separation = 5
 script = ExtResource("1_ojxkp")
 card = ExtResource("2_k75is")
 
@@ -23,7 +23,7 @@ layout_mode = 2
 [node name="Price" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 2
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="PriceLabel" type="Label" parent="Price"]
@@ -32,7 +32,7 @@ layout_mode = 2
 text = "999"
 
 [node name="GoldIcon" type="TextureRect" parent="Price"]
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 texture = ExtResource("2_s11cf")
 expand_mode = 1
@@ -40,7 +40,7 @@ stretch_mode = 5
 
 [node name="BuyButton" type="Button" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 12)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Buy"
 

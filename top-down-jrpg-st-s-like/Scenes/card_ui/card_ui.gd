@@ -3,15 +3,11 @@ extends Control
 
 signal reparent_requested(which_card_ui: CardUI)
 
-const BASE_STYLEBOX := preload("res://Scenes/card_ui/card_base_stylebox.tres")
-const DRAG_STYLEBOX := preload("res://Scenes/card_ui/card_drag_stylebox.tres")
-const HOVER_STYLEBOX := preload("res://Scenes/card_ui/card_hover_stylebox.tres")
-
 @export var player_modifiers: ModifierHandler
 @export var card: Card : set = _set_card
 @export var char_stats: CharacterStats : set = _set_char_stats
 
-@onready var card_visuals: CardVisuals = $CardVisuals
+@onready var card_face: CardFace = $CardFace
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 @onready var targets: Array[Node] = []
@@ -99,21 +95,16 @@ func _set_card(value: Card) -> void:
 		await ready
 
 	card = value
-	card_visuals.card = card
+	card_face.card = card
 
 
 func _set_playable(value: bool) -> void:
 	playable = value
 
-	if not is_node_ready() or not card_visuals:
+	if not is_node_ready() or not card_face:
 		return
 
-	if not playable:
-		card_visuals.cost.add_theme_color_override("font_color", Color.RED)
-		card_visuals.icon.modulate = Color(1, 1, 1, 0.5)
-	else:
-		card_visuals.cost.remove_theme_color_override("font_color")
-		card_visuals.icon.modulate = Color(1, 1, 1, 1)
+	card_face.playable = playable
 
 
 func _set_char_stats(value: CharacterStats) -> void:

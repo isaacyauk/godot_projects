@@ -97,10 +97,10 @@ texture = SubResource("GradientTexture2D_lpow7")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -90.0
-offset_right = 90.0
-offset_bottom = -10.0
+offset_left = 25
+offset_top = -225
+offset_right = 225
+offset_bottom = -25
 grow_vertical = 0
 texture = ExtResource("2_41omk")
 expand_mode = 1
@@ -125,10 +125,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 27.0
-offset_top = -49.0
-offset_right = 67.0
-offset_bottom = -37.0
+offset_left = 67.5
+offset_top = -122.5
+offset_right = 167.5
+offset_bottom = -92.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Shop"
@@ -142,10 +142,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -34.0
-offset_right = -58.0
-offset_bottom = -20.0
+offset_left = -245
+offset_top = -85
+offset_right = -145
+offset_bottom = -50
 grow_horizontal = 2
 grow_vertical = 2
 text = "Leave"
@@ -156,17 +156,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = -35.0
-offset_right = 120.5
-offset_bottom = 67.0
+offset_left = -73.75
+offset_top = -87.5
+offset_right = 301.25
+offset_bottom = 167.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Cards" type="HBoxContainer" parent="UILayer/ShopContent"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 38
 
 [node name="ShopCard" parent="UILayer/ShopContent/Cards" instance=ExtResource("4_2u2et")]
 layout_mode = 2
@@ -180,7 +180,7 @@ layout_mode = 2
 [node name="Relics" type="HBoxContainer" parent="UILayer/ShopContent"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 38
 
 [node name="ShopRelic" parent="UILayer/ShopContent/Relics" instance=ExtResource("5_m1t66")]
 layout_mode = 2
@@ -193,12 +193,12 @@ layout_mode = 2
 
 [node name="RemovalService" type="HBoxContainer" parent="UILayer/ShopContent"]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="RemoveCardButton" type="Button" parent="UILayer/ShopContent/RemovalService"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(56, 14)
+custom_minimum_size = Vector2(140, 35)
 layout_mode = 2
 text = "Remove Card"
 

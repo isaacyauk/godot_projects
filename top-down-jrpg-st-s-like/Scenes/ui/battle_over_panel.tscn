@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dfig8d63ggof1"]
+[gd_scene load_steps=4 format=3 uid="uid://dfig8d63ggof1"]
 
 [ext_resource type="Script" path="res://Scenes/ui/battle_over_panel.gd" id="1_msgmm"]
 
@@ -25,10 +25,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -50
+offset_top = -50
+offset_right = 50
+offset_bottom = 50
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -42,14 +42,14 @@ vertical_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 16)
+custom_minimum_size = Vector2(125, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Awesome!"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 16)
+custom_minimum_size = Vector2(125, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Main Menu"

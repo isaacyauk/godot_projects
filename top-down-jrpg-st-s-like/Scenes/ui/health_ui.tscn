@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://b3dkx1dqlo0eo"]
+[gd_scene load_steps=3 format=3 uid="uid://b3dkx1dqlo0eo"]
 
 [ext_resource type="Texture2D" path="res://Placeholder Assets/deckbuilder/heart.png" id="1_7kxtg"]
 [ext_resource type="Script" path="res://Scenes/ui/health_ui.gd" id="1_j2epd"]
 
 [node name="HealthUI" type="HBoxContainer"]
-theme_override_constants/separation = 2
+theme_override_constants/separation = 5
 script = ExtResource("1_j2epd")
 
 [node name="HealthImage" type="TextureRect" parent="."]

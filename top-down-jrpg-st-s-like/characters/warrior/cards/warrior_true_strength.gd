@@ -1,3 +1,6 @@
+@tool  # card_face.gd previews cards live in the editor; a @tool script can
+       # only call methods on other @tool scripts, otherwise Godot hands it a
+       # placeholder instance and every method call fails.
 extends Card
 
 const TRUE_STRENGTH_FORM_STATUS = preload("res://statuses/true_strength_form.tres")

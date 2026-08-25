@@ -1,3 +1,6 @@
+@tool  # card_face.gd previews cards live in the editor; a @tool script can
+       # only call methods on other @tool scripts, otherwise Godot hands it a
+       # placeholder instance and every method call fails.
 extends Card
 
 var base_block := 2

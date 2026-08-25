@@ -50,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -55.0
-offset_top = -48.0
-offset_right = 55.0
-offset_bottom = 66.0
+offset_left = -137.5
+offset_top = -120
+offset_right = 137.5
+offset_bottom = 165
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -64,16 +64,16 @@ label_settings = SubResource("LabelSettings_oksol")
 horizontal_alignment = 1
 
 [node name="RewardContainer" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(110, 80)
+custom_minimum_size = Vector2(275, 200)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_78yad")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/RewardContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="Rewards" type="VBoxContainer" parent="VBoxContainer/RewardContainer/MarginContainer"]
 unique_name_in_owner = true
@@ -90,7 +90,7 @@ reward_icon = ExtResource("5_lc0i4")
 reward_text = "Add New Card"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(50, 14)
+custom_minimum_size = Vector2(125, 35)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Continue"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ct5xbf3ru0nqa"]
+[gd_scene load_steps=11 format=3 uid="uid://ct5xbf3ru0nqa"]
 
 [ext_resource type="Script" path="res://Scenes/run/run.gd" id="1_bedv1"]
 [ext_resource type="PackedScene" path="res://Scenes/ui/card_pile_opener.tscn" id="4_ayx7e"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/relic_handler/relic_handler.tscn" id="6_f8fbw"]
 [ext_resource type="PackedScene" path="res://Scenes/relic_handler/relic_tooltip.tscn" id="10_xh4qt"]
 [ext_resource type="Script" path="res://Scenes/run/pause_menu.gd" id="11_a4w7h"]
+[ext_resource type="Theme" path="res://main_theme.tres" id="12_theme"]
 
 [node name="Run" type="Node" groups=["run"]]
 script = ExtResource("1_bedv1")
@@ -19,27 +20,28 @@ script = ExtResource("1_bedv1")
 layer = 3
 
 [node name="Background" type="ColorRect" parent="TopBar"]
-custom_minimum_size = Vector2(0, 18)
+custom_minimum_size = Vector2(0, 45)
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 0.501961)
 
 [node name="BarItems" type="HBoxContainer" parent="TopBar"]
-custom_minimum_size = Vector2(0, 18)
+theme = ExtResource("12_theme")
+custom_minimum_size = Vector2(0, 45)
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 
 [node name="HealthUI" parent="TopBar/BarItems" instance=ExtResource("4_k05q4")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(35, 0)
+custom_minimum_size = Vector2(87.5, 0)
 layout_mode = 2
 show_max_hp = true
 
 [node name="GoldUI" parent="TopBar/BarItems" instance=ExtResource("4_dtarl")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 
 [node name="RelicHandlerContainer" type="CenterContainer" parent="TopBar/BarItems"]
@@ -48,30 +50,32 @@ size_flags_horizontal = 3
 
 [node name="RelicHandler" parent="TopBar/BarItems/RelicHandlerContainer" instance=ExtResource("6_f8fbw")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 16)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="DeckButton" parent="TopBar/BarItems" node_paths=PackedStringArray("counter") instance=ExtResource("4_ayx7e")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("5_dw5bf")
 counter = NodePath("Counter")
 
 [node name="Counter" type="Label" parent="TopBar/BarItems/DeckButton"]
 layout_mode = 0
-offset_left = -5.0
-offset_top = 12.0
-offset_right = 5.0
-offset_bottom = 18.0
+offset_left = 0.0
+offset_top = 30.0
+offset_right = 48.0
+offset_bottom = 48.0
 text = "99"
 horizontal_alignment = 1
 
 [node name="DeckView" parent="TopBar" instance=ExtResource("6_4w0b2")]
+theme = ExtResource("12_theme")
 unique_name_in_owner = true
 visible = false
 
 [node name="RelicTooltip" parent="TopBar" instance=ExtResource("10_xh4qt")]
+theme = ExtResource("12_theme")
 unique_name_in_owner = true
 visible = false
 
@@ -90,18 +94,19 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.705882)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+theme = ExtResource("12_theme")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -47.0
-offset_top = -20.0
-offset_right = 47.0
-offset_bottom = 20.0
+offset_left = -117.5
+offset_top = -50
+offset_right = 117.5
+offset_bottom = 50
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 38
 
 [node name="Label" type="Label" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
@@ -111,16 +116,16 @@ vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 25
 
 [node name="BackToGameButton" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 14)
+custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 text = "Back"
 
 [node name="SaveAndQuitButton" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 text = "Overworld"
