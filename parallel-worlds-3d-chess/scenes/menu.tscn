@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/menu_backdrop.gd" id="1_backdrop"]
+[ext_resource type="Script" path="res://scripts/board_visual.gd" id="2_board"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="3_menu"]
+[ext_resource type="Shader" path="res://shaders/night_sky.gdshader" id="4_sky"]
+
+[sub_resource type="ShaderMaterial" id="SkyMaterial_menu"]
+shader = ExtResource("4_sky")
+shader_parameter/zenith_color = Color(0.005, 0.039, 0.09, 1)
+shader_parameter/horizon_color = Color(0.016, 0.129, 0.255, 1)
+shader_parameter/gradient_low = -0.85
+shader_parameter/gradient_high = 0.15
+shader_parameter/star_color = Color(0.933, 0.965, 1, 1)
+shader_parameter/small_density = 58.0
+shader_parameter/small_size = 0.05
+shader_parameter/small_coverage = 0.14
+shader_parameter/large_density = 24.0
+shader_parameter/large_size = 0.1
+shader_parameter/large_coverage = 0.065
+shader_parameter/star_brightness = 1.0
+shader_parameter/star_bloom = 0.26
+shader_parameter/nebula_color = Color(0.78, 0.87, 1, 1)
+shader_parameter/nebula_strength = 0.14
+shader_parameter/nebula_direction = Vector3(-0.6, -0.3, -0.72)
+shader_parameter/nebula_spread = 0.42
+
+[sub_resource type="Sky" id="Sky_menu"]
+sky_material = SubResource("SkyMaterial_menu")
+
+[sub_resource type="Environment" id="Environment_menu"]
+background_mode = 2
+sky = SubResource("Sky_menu")
+ambient_light_source = 2
+ambient_light_color = Color(0.72, 0.8, 0.95, 1)
+ambient_light_energy = 0.75
+tonemap_mode = 2
+tonemap_white = 3.0
+glow_enabled = true
+glow_intensity = 0.35
+glow_bloom = 0.04
+glow_hdr_threshold = 1.1
+
+[node name="MenuRoot" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_menu")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.79547, 0.00000, 0.60599, 0.45456, 0.66131, -0.59669, -0.40075, 0.75011, 0.52606, 0.00000, 18.00000, 0.00000)
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="FillLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.82708, 0.00000, -0.56208, -0.33749, 0.79968, 0.49660, 0.44949, 0.60042, -0.66140, 0.00000, 12.00000, 0.00000)
+light_color = Color(0.55, 0.72, 1, 1)
+light_energy = 0.4
+
+[node name="Board" type="Node3D" parent="."]
+script = ExtResource("2_board")
+
+[node name="Backdrop" type="Node3D" parent="."]
+script = ExtResource("1_backdrop")
+
+[node name="Menu" type="CanvasLayer" parent="."]
+script = ExtResource("3_menu")
